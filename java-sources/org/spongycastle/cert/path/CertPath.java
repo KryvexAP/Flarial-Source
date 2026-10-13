@@ -1,0 +1,63 @@
+package org.spongycastle.cert.path;
+
+import org.spongycastle.cert.X509CertificateHolder;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes3.dex */
+public class CertPath {
+    private final X509CertificateHolder[] certificates;
+
+    public CertPath(X509CertificateHolder[] x509CertificateHolderArr) {
+        this.certificates = copyArray(x509CertificateHolderArr);
+    }
+
+    private X509CertificateHolder[] copyArray(X509CertificateHolder[] x509CertificateHolderArr) {
+        int length = x509CertificateHolderArr.length;
+        X509CertificateHolder[] x509CertificateHolderArr2 = new X509CertificateHolder[length];
+        System.arraycopy(x509CertificateHolderArr, 0, x509CertificateHolderArr2, 0, length);
+        return x509CertificateHolderArr2;
+    }
+
+    public final CertPathValidationResult evaluate(CertPathValidation[] certPathValidationArr) {
+        CertPathValidationContext certPathValidationContext = new CertPathValidationContext(CertPathUtils.getCriticalExtensionsOIDs(this.certificates));
+        CertPathValidationResultBuilder certPathValidationResultBuilder = new CertPathValidationResultBuilder();
+        for (int i = 0; i != certPathValidationArr.length; i++) {
+            int length = this.certificates.length - 1;
+            while (length >= 0) {
+                try {
+                    certPathValidationContext.setIsEndEntity(length == 0);
+                    certPathValidationArr[i].validate(certPathValidationContext, this.certificates[length]);
+                } catch (CertPathValidationException unused) {
+                }
+                length--;
+            }
+        }
+        certPathValidationResultBuilder.build();
+        throw null;
+    }
+
+    public final X509CertificateHolder[] getCertificates() {
+        return copyArray(this.certificates);
+    }
+
+    public final int length() {
+        return this.certificates.length;
+    }
+
+    public final CertPathValidationResult validate(CertPathValidation[] certPathValidationArr) {
+        CertPathValidationContext certPathValidationContext = new CertPathValidationContext(CertPathUtils.getCriticalExtensionsOIDs(this.certificates));
+        for (int i = 0; i != certPathValidationArr.length; i++) {
+            int length = this.certificates.length - 1;
+            while (length >= 0) {
+                try {
+                    certPathValidationContext.setIsEndEntity(length == 0);
+                    certPathValidationArr[i].validate(certPathValidationContext, this.certificates[length]);
+                    length--;
+                } catch (CertPathValidationException e) {
+                    return new CertPathValidationResult(certPathValidationContext, length, i, e);
+                }
+            }
+        }
+        return new CertPathValidationResult(certPathValidationContext);
+    }
+}

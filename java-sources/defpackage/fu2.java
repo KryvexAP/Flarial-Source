@@ -1,0 +1,20 @@
+package defpackage;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes.dex */
+public final class fu2 {
+    public static hu2 a(iu2 iu2Var) {
+        iu2Var.getClass();
+        int iOrdinal = iu2Var.ordinal();
+        if (iOrdinal == 2) {
+            return hu2.ON_DESTROY;
+        }
+        if (iOrdinal == 3) {
+            return hu2.ON_STOP;
+        }
+        if (iOrdinal != 4) {
+            return null;
+        }
+        return hu2.ON_PAUSE;
+    }
+}

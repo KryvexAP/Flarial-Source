@@ -1,0 +1,126 @@
+package org.conscrypt;
+
+import com.unity3d.ads.core.data.datasource.AndroidStaticDeviceInfoDataSource;
+import defpackage.i90;
+import defpackage.qs3;
+import defpackage.wm2;
+import defpackage.yo1;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.KeyFactorySpi;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.EncodedKeySpec;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes3.dex */
+public final class OpenSslEdDsaKeyFactory extends KeyFactorySpi {
+    @Override // java.security.KeyFactorySpi
+    public PrivateKey engineGeneratePrivate(KeySpec keySpec) throws InvalidKeySpecException {
+        if (keySpec == null) {
+            qs3.k("keySpec == null");
+            return null;
+        }
+        if (keySpec instanceof EncodedKeySpec) {
+            return new OpenSslEdDsaPrivateKey((EncodedKeySpec) keySpec);
+        }
+        throw new InvalidKeySpecException(i90.n(keySpec, "Must use PKCS8EncodedKeySpec or Raw EncodedKeySpec; was "));
+    }
+
+    @Override // java.security.KeyFactorySpi
+    public PublicKey engineGeneratePublic(KeySpec keySpec) throws InvalidKeySpecException {
+        if (keySpec == null) {
+            qs3.k("keySpec == null");
+            return null;
+        }
+        if (keySpec instanceof EncodedKeySpec) {
+            return new OpenSslEdDsaPublicKey((EncodedKeySpec) keySpec);
+        }
+        throw new InvalidKeySpecException(i90.n(keySpec, "Must use X509EncodedKeySpec or Raw EncodedKeySpec; was "));
+    }
+
+    @Override // java.security.KeyFactorySpi
+    public <T extends KeySpec> T engineGetKeySpec(Key key, Class<T> cls) throws InvalidKeySpecException {
+        if (key == null) {
+            qs3.k("key == null");
+            return null;
+        }
+        if (cls == null) {
+            qs3.k("keySpec == null");
+            return null;
+        }
+        if (!key.getAlgorithm().equals("EdDSA") && !key.getAlgorithm().equals("Ed25519") && !key.getAlgorithm().equals("1.3.101.112")) {
+            qs3.k("Key must be an EdDSA or Ed25519 key");
+            return null;
+        }
+        if (key.getEncoded() == null) {
+            qs3.k("Key is destroyed");
+            return null;
+        }
+        try {
+            Key keyEngineTranslateKey = engineTranslateKey(key);
+            if (keyEngineTranslateKey instanceof OpenSslEdDsaPublicKey) {
+                OpenSslEdDsaPublicKey openSslEdDsaPublicKey = (OpenSslEdDsaPublicKey) keyEngineTranslateKey;
+                if (X509EncodedKeySpec.class.isAssignableFrom(cls)) {
+                    return new X509EncodedKeySpec(keyEngineTranslateKey.getEncoded());
+                }
+                if (EncodedKeySpec.class.isAssignableFrom(cls)) {
+                    return (T) KeySpecUtil.makeRawKeySpec(openSslEdDsaPublicKey.getRaw(), cls);
+                }
+            } else if (keyEngineTranslateKey instanceof OpenSslEdDsaPrivateKey) {
+                OpenSslEdDsaPrivateKey openSslEdDsaPrivateKey = (OpenSslEdDsaPrivateKey) keyEngineTranslateKey;
+                if (PKCS8EncodedKeySpec.class.isAssignableFrom(cls)) {
+                    return new PKCS8EncodedKeySpec(keyEngineTranslateKey.getEncoded());
+                }
+                if (EncodedKeySpec.class.isAssignableFrom(cls)) {
+                    return (T) KeySpecUtil.makeRawKeySpec(openSslEdDsaPrivateKey.getRaw(), cls);
+                }
+            }
+            throw new InvalidKeySpecException("Unsupported key type and key spec combination; key=" + keyEngineTranslateKey.getClass().getName() + ", keySpec=" + cls.getName());
+        } catch (InvalidKeyException e) {
+            throw new InvalidKeySpecException("Unsupported key class: " + key.getClass(), e);
+        }
+    }
+
+    @Override // java.security.KeyFactorySpi
+    public Key engineTranslateKey(Key key) throws InvalidKeyException {
+        if (key == null) {
+            yo1.m("key == null");
+            return null;
+        }
+        if ((key instanceof OpenSslEdDsaPublicKey) || (key instanceof OpenSslEdDsaPrivateKey)) {
+            return key;
+        }
+        if ((key instanceof PrivateKey) && key.getFormat().equals("PKCS#8")) {
+            byte[] encoded = key.getEncoded();
+            if (encoded == null) {
+                yo1.m("Key does not support encoding");
+                return null;
+            }
+            try {
+                return engineGeneratePrivate(new PKCS8EncodedKeySpec(encoded));
+            } catch (InvalidKeySpecException e) {
+                wm2.n(e);
+                return null;
+            }
+        }
+        if (!(key instanceof PublicKey) || !key.getFormat().equals(AndroidStaticDeviceInfoDataSource.CERTIFICATE_TYPE_X509)) {
+            throw new InvalidKeyException("Key must be XEC public or private key; was ".concat(key.getClass().getName()));
+        }
+        byte[] encoded2 = key.getEncoded();
+        if (encoded2 == null) {
+            yo1.m("Key does not support encoding");
+            return null;
+        }
+        try {
+            return engineGeneratePublic(new X509EncodedKeySpec(encoded2));
+        } catch (InvalidKeySpecException e2) {
+            wm2.n(e2);
+            return null;
+        }
+    }
+}

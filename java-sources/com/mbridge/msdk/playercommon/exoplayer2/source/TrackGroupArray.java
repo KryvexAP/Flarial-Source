@@ -1,0 +1,94 @@
+package com.mbridge.msdk.playercommon.exoplayer2.source;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes2.dex */
+public final class TrackGroupArray implements Parcelable {
+    private int hashCode;
+    public final int length;
+    private final TrackGroup[] trackGroups;
+    public static final TrackGroupArray EMPTY = new TrackGroupArray(new TrackGroup[0]);
+    public static final Parcelable.Creator<TrackGroupArray> CREATOR = new Parcelable.Creator<TrackGroupArray>() { // from class: com.mbridge.msdk.playercommon.exoplayer2.source.TrackGroupArray.1
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public TrackGroupArray createFromParcel(Parcel parcel) {
+            return new TrackGroupArray(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public TrackGroupArray[] newArray(int i) {
+            return new TrackGroupArray[i];
+        }
+    };
+
+    public TrackGroupArray(Parcel parcel) {
+        int i = parcel.readInt();
+        this.length = i;
+        this.trackGroups = new TrackGroup[i];
+        for (int i2 = 0; i2 < this.length; i2++) {
+            this.trackGroups[i2] = (TrackGroup) parcel.readParcelable(TrackGroup.class.getClassLoader());
+        }
+    }
+
+    @Override // android.os.Parcelable
+    public int describeContents() {
+        return 0;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && TrackGroupArray.class == obj.getClass()) {
+            TrackGroupArray trackGroupArray = (TrackGroupArray) obj;
+            if (this.length == trackGroupArray.length && Arrays.equals(this.trackGroups, trackGroupArray.trackGroups)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public TrackGroup get(int i) {
+        return this.trackGroups[i];
+    }
+
+    public int hashCode() {
+        int i = this.hashCode;
+        if (i != 0) {
+            return i;
+        }
+        int iHashCode = Arrays.hashCode(this.trackGroups);
+        this.hashCode = iHashCode;
+        return iHashCode;
+    }
+
+    public int indexOf(TrackGroup trackGroup) {
+        for (int i = 0; i < this.length; i++) {
+            if (this.trackGroups[i] == trackGroup) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean isEmpty() {
+        return this.length == 0;
+    }
+
+    @Override // android.os.Parcelable
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(this.length);
+        for (int i2 = 0; i2 < this.length; i2++) {
+            parcel.writeParcelable(this.trackGroups[i2], 0);
+        }
+    }
+
+    public TrackGroupArray(TrackGroup... trackGroupArr) {
+        this.trackGroups = trackGroupArr;
+        this.length = trackGroupArr.length;
+    }
+}

@@ -1,0 +1,136 @@
+package org.spongycastle.pqc.crypto.mceliece;
+
+import defpackage.yo1;
+import defpackage.zb1;
+import java.security.SecureRandom;
+import org.spongycastle.crypto.CipherParameters;
+import org.spongycastle.crypto.Digest;
+import org.spongycastle.crypto.InvalidCipherTextException;
+import org.spongycastle.crypto.digests.SHA1Digest;
+import org.spongycastle.crypto.params.ParametersWithRandom;
+import org.spongycastle.crypto.prng.DigestRandomGenerator;
+import org.spongycastle.pqc.crypto.MessageEncryptor;
+import org.spongycastle.pqc.math.linearalgebra.ByteUtils;
+import org.spongycastle.pqc.math.linearalgebra.GF2Vector;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes4.dex */
+public class McElieceFujisakiCipher implements MessageEncryptor {
+    private static final String DEFAULT_PRNG_NAME = "SHA1PRNG";
+    public static final String OID = "1.3.6.1.4.1.8301.3.1.3.4.2.1";
+    private boolean forEncryption;
+    private int k;
+    McElieceCCA2KeyParameters key;
+    private Digest messDigest;
+    private int n;
+    private SecureRandom sr;
+    private int t;
+
+    private void initCipherDecrypt(McElieceCCA2PrivateKeyParameters mcElieceCCA2PrivateKeyParameters) {
+        this.messDigest = Utils.getDigest(mcElieceCCA2PrivateKeyParameters.getDigest());
+        this.n = mcElieceCCA2PrivateKeyParameters.getN();
+        this.t = mcElieceCCA2PrivateKeyParameters.getT();
+    }
+
+    private void initCipherEncrypt(McElieceCCA2PublicKeyParameters mcElieceCCA2PublicKeyParameters) {
+        SecureRandom secureRandom = this.sr;
+        if (secureRandom == null) {
+            secureRandom = new SecureRandom();
+        }
+        this.sr = secureRandom;
+        this.messDigest = Utils.getDigest(mcElieceCCA2PublicKeyParameters.getDigest());
+        this.n = mcElieceCCA2PublicKeyParameters.getN();
+        this.k = mcElieceCCA2PublicKeyParameters.getK();
+        this.t = mcElieceCCA2PublicKeyParameters.getT();
+    }
+
+    public final int getKeySize(McElieceCCA2KeyParameters mcElieceCCA2KeyParameters) throws IllegalArgumentException {
+        if (mcElieceCCA2KeyParameters instanceof McElieceCCA2PublicKeyParameters) {
+            return ((McElieceCCA2PublicKeyParameters) mcElieceCCA2KeyParameters).getN();
+        }
+        if (mcElieceCCA2KeyParameters instanceof McElieceCCA2PrivateKeyParameters) {
+            return ((McElieceCCA2PrivateKeyParameters) mcElieceCCA2KeyParameters).getN();
+        }
+        zb1.l("unsupported type");
+        return 0;
+    }
+
+    @Override // org.spongycastle.pqc.crypto.MessageEncryptor
+    public final void init(boolean z, CipherParameters cipherParameters) {
+        this.forEncryption = z;
+        if (!z) {
+            McElieceCCA2PrivateKeyParameters mcElieceCCA2PrivateKeyParameters = (McElieceCCA2PrivateKeyParameters) cipherParameters;
+            this.key = mcElieceCCA2PrivateKeyParameters;
+            initCipherDecrypt(mcElieceCCA2PrivateKeyParameters);
+        } else {
+            if (!(cipherParameters instanceof ParametersWithRandom)) {
+                this.sr = new SecureRandom();
+                McElieceCCA2PublicKeyParameters mcElieceCCA2PublicKeyParameters = (McElieceCCA2PublicKeyParameters) cipherParameters;
+                this.key = mcElieceCCA2PublicKeyParameters;
+                initCipherEncrypt(mcElieceCCA2PublicKeyParameters);
+                return;
+            }
+            ParametersWithRandom parametersWithRandom = (ParametersWithRandom) cipherParameters;
+            this.sr = parametersWithRandom.getRandom();
+            McElieceCCA2PublicKeyParameters mcElieceCCA2PublicKeyParameters2 = (McElieceCCA2PublicKeyParameters) parametersWithRandom.getParameters();
+            this.key = mcElieceCCA2PublicKeyParameters2;
+            initCipherEncrypt(mcElieceCCA2PublicKeyParameters2);
+        }
+    }
+
+    @Override // org.spongycastle.pqc.crypto.MessageEncryptor
+    public final byte[] messageDecrypt(byte[] bArr) throws InvalidCipherTextException {
+        if (this.forEncryption) {
+            zb1.u("cipher initialised for decryption");
+            return null;
+        }
+        int i = (this.n + 7) >> 3;
+        int length = bArr.length - i;
+        byte[][] bArrSplit = ByteUtils.split(bArr, i);
+        byte[] bArr2 = bArrSplit[0];
+        byte[] bArr3 = bArrSplit[1];
+        GF2Vector[] gF2VectorArrDecryptionPrimitive = McElieceCCA2Primitives.decryptionPrimitive((McElieceCCA2PrivateKeyParameters) this.key, GF2Vector.OS2VP(this.n, bArr2));
+        byte[] encoded = gF2VectorArrDecryptionPrimitive[0].getEncoded();
+        GF2Vector gF2Vector = gF2VectorArrDecryptionPrimitive[1];
+        DigestRandomGenerator digestRandomGenerator = new DigestRandomGenerator(new SHA1Digest());
+        digestRandomGenerator.addSeedMaterial(encoded);
+        byte[] bArr4 = new byte[length];
+        digestRandomGenerator.nextBytes(bArr4, 0, length);
+        for (int i2 = 0; i2 < length; i2++) {
+            bArr4[i2] = (byte) (bArr4[i2] ^ bArr3[i2]);
+        }
+        byte[] bArrConcatenate = ByteUtils.concatenate(encoded, bArr4);
+        byte[] bArr5 = new byte[this.messDigest.getDigestSize()];
+        this.messDigest.update(bArrConcatenate, 0, bArrConcatenate.length);
+        this.messDigest.doFinal(bArr5, 0);
+        if (Conversions.encode(this.n, this.t, bArr5).equals(gF2Vector)) {
+            return bArr4;
+        }
+        yo1.p("Bad Padding: invalid ciphertext");
+        return null;
+    }
+
+    @Override // org.spongycastle.pqc.crypto.MessageEncryptor
+    public final byte[] messageEncrypt(byte[] bArr) {
+        if (!this.forEncryption) {
+            zb1.u("cipher initialised for decryption");
+            return null;
+        }
+        GF2Vector gF2Vector = new GF2Vector(this.k, this.sr);
+        byte[] encoded = gF2Vector.getEncoded();
+        byte[] bArrConcatenate = ByteUtils.concatenate(encoded, bArr);
+        this.messDigest.update(bArrConcatenate, 0, bArrConcatenate.length);
+        byte[] bArr2 = new byte[this.messDigest.getDigestSize()];
+        this.messDigest.doFinal(bArr2, 0);
+        byte[] encoded2 = McElieceCCA2Primitives.encryptionPrimitive((McElieceCCA2PublicKeyParameters) this.key, gF2Vector, Conversions.encode(this.n, this.t, bArr2)).getEncoded();
+        DigestRandomGenerator digestRandomGenerator = new DigestRandomGenerator(new SHA1Digest());
+        digestRandomGenerator.addSeedMaterial(encoded);
+        int length = bArr.length;
+        byte[] bArr3 = new byte[length];
+        digestRandomGenerator.nextBytes(bArr3, 0, length);
+        for (int i = 0; i < bArr.length; i++) {
+            bArr3[i] = (byte) (bArr3[i] ^ bArr[i]);
+        }
+        return ByteUtils.concatenate(encoded2, bArr3);
+    }
+}

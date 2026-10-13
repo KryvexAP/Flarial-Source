@@ -1,0 +1,56 @@
+package com.mbridge.msdk.playercommon.exoplayer2.text.ttml;
+
+import com.mbridge.msdk.playercommon.exoplayer2.text.Cue;
+import com.mbridge.msdk.playercommon.exoplayer2.text.Subtitle;
+import com.mbridge.msdk.playercommon.exoplayer2.util.Util;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes2.dex */
+final class TtmlSubtitle implements Subtitle {
+    private final long[] eventTimesUs;
+    private final Map<String, TtmlStyle> globalStyles;
+    private final Map<String, TtmlRegion> regionMap;
+    private final TtmlNode root;
+
+    public TtmlSubtitle(TtmlNode ttmlNode, Map<String, TtmlStyle> map, Map<String, TtmlRegion> map2) {
+        this.root = ttmlNode;
+        this.regionMap = map2;
+        this.globalStyles = map != null ? Collections.unmodifiableMap(map) : Collections.EMPTY_MAP;
+        this.eventTimesUs = ttmlNode.getEventTimesUs();
+    }
+
+    @Override // com.mbridge.msdk.playercommon.exoplayer2.text.Subtitle
+    public List<Cue> getCues(long j) {
+        return this.root.getCues(j, this.globalStyles, this.regionMap);
+    }
+
+    @Override // com.mbridge.msdk.playercommon.exoplayer2.text.Subtitle
+    public long getEventTime(int i) {
+        return this.eventTimesUs[i];
+    }
+
+    @Override // com.mbridge.msdk.playercommon.exoplayer2.text.Subtitle
+    public int getEventTimeCount() {
+        return this.eventTimesUs.length;
+    }
+
+    public Map<String, TtmlStyle> getGlobalStyles() {
+        return this.globalStyles;
+    }
+
+    @Override // com.mbridge.msdk.playercommon.exoplayer2.text.Subtitle
+    public int getNextEventTimeIndex(long j) {
+        int iBinarySearchCeil = Util.binarySearchCeil(this.eventTimesUs, j, false, false);
+        if (iBinarySearchCeil < this.eventTimesUs.length) {
+            return iBinarySearchCeil;
+        }
+        return -1;
+    }
+
+    public TtmlNode getRoot() {
+        return this.root;
+    }
+}

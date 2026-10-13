@@ -1,0 +1,28 @@
+package com.apm.insight.runtime.a;
+
+import android.content.Context;
+import com.apm.insight.CrashType;
+import com.apm.insight.entity.Header;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes.dex */
+final class a extends c {
+    public a(Context context, b bVar, d dVar) {
+        super(CrashType.ANR, context, bVar, dVar);
+    }
+
+    @Override // com.apm.insight.runtime.a.c
+    public final com.apm.insight.entity.a a(com.apm.insight.entity.a aVar) {
+        com.apm.insight.entity.a aVarA = super.a(aVar);
+        Header headerA = Header.a(this.b);
+        Header.a(headerA);
+        Header.b(headerA);
+        headerA.c();
+        headerA.d();
+        headerA.e();
+        aVarA.a(headerA);
+        aVarA.a("process_name", (Object) com.apm.insight.l.a.b());
+        com.apm.insight.a.a(aVarA, headerA, this.a);
+        return aVarA;
+    }
+}

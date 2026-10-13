@@ -1,0 +1,25 @@
+package defpackage;
+
+import android.view.RenderNode;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes.dex */
+public final class af4 {
+    public static final af4 a = new af4();
+
+    public final int a(RenderNode renderNode) {
+        return renderNode.getAmbientShadowColor();
+    }
+
+    public final int b(RenderNode renderNode) {
+        return renderNode.getSpotShadowColor();
+    }
+
+    public final void c(RenderNode renderNode, int i) {
+        renderNode.setAmbientShadowColor(i);
+    }
+
+    public final void d(RenderNode renderNode, int i) {
+        renderNode.setSpotShadowColor(i);
+    }
+}

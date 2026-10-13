@@ -1,0 +1,14 @@
+package com.mbridge.msdk.thrid.okhttp.internal.http2;
+
+import java.io.IOException;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes3.dex */
+public final class n extends IOException {
+    public final b a;
+
+    public n(b bVar) {
+        super("stream was reset: " + bVar);
+        this.a = bVar;
+    }
+}

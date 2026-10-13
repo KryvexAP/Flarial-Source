@@ -1,0 +1,41 @@
+package com.bytedance.sdk.component.adexpress.dynamic.dynamicview;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.GradientDrawable;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes.dex */
+public class qz extends wc {
+    public nf qam;
+
+    public qz(Context context, DynamicRootView dynamicRootView, com.bytedance.sdk.component.adexpress.dynamic.sh.qgq qgqVar) {
+        super(context, dynamicRootView, qgqVar);
+    }
+
+    @Override // com.bytedance.sdk.component.adexpress.dynamic.dynamicview.jdl
+    public GradientDrawable getDrawable() {
+        nf nfVar = new nf();
+        this.qam = nfVar;
+        return nfVar;
+    }
+
+    @Override // com.bytedance.sdk.component.adexpress.dynamic.dynamicview.jdl
+    public nf qam(Bitmap bitmap) {
+        qam qamVar = new qam(bitmap, this.qam);
+        this.qam = qamVar;
+        return qamVar;
+    }
+
+    @Override // com.bytedance.sdk.component.adexpress.dynamic.dynamicview.wc, com.bytedance.sdk.component.adexpress.dynamic.dynamicview.fj
+    public boolean xi() {
+        return super.xi();
+    }
+
+    @Override // com.bytedance.sdk.component.adexpress.dynamic.dynamicview.jdl
+    public GradientDrawable qam(GradientDrawable.Orientation orientation, int[] iArr) {
+        nf nfVar = new nf(orientation, iArr);
+        this.qam = nfVar;
+        return nfVar;
+    }
+}

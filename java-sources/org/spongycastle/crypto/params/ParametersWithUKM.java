@@ -1,0 +1,29 @@
+package org.spongycastle.crypto.params;
+
+import org.spongycastle.crypto.CipherParameters;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes4.dex */
+public class ParametersWithUKM implements CipherParameters {
+    private CipherParameters parameters;
+    private byte[] ukm;
+
+    public ParametersWithUKM(CipherParameters cipherParameters, byte[] bArr, int i, int i2) {
+        byte[] bArr2 = new byte[i2];
+        this.ukm = bArr2;
+        this.parameters = cipherParameters;
+        System.arraycopy(bArr, i, bArr2, 0, i2);
+    }
+
+    public final CipherParameters getParameters() {
+        return this.parameters;
+    }
+
+    public final byte[] getUKM() {
+        return this.ukm;
+    }
+
+    public ParametersWithUKM(CipherParameters cipherParameters, byte[] bArr) {
+        this(cipherParameters, bArr, 0, bArr.length);
+    }
+}

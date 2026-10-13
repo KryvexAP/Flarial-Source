@@ -1,0 +1,192 @@
+package org.spongycastle.jcajce.provider.asymmetric;
+
+import defpackage.i90;
+import java.util.HashMap;
+import java.util.Map;
+import org.spongycastle.asn1.ASN1ObjectIdentifier;
+import org.spongycastle.asn1.bsi.BSIObjectIdentifiers;
+import org.spongycastle.asn1.eac.EACObjectIdentifiers;
+import org.spongycastle.asn1.nist.NISTObjectIdentifiers;
+import org.spongycastle.asn1.sec.SECObjectIdentifiers;
+import org.spongycastle.asn1.teletrust.TeleTrusTObjectIdentifiers;
+import org.spongycastle.asn1.x9.X9ObjectIdentifiers;
+import org.spongycastle.jcajce.provider.asymmetric.ec.KeyFactorySpi;
+import org.spongycastle.jcajce.provider.config.ConfigurableProvider;
+import org.spongycastle.jcajce.provider.util.AsymmetricAlgorithmProvider;
+import org.spongycastle.pqc.jcajce.spec.SPHINCS256KeyGenParameterSpec;
+import org.spongycastle.util.Properties;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes4.dex */
+public class EC {
+    private static final String PREFIX = "org.spongycastle.jcajce.provider.asymmetric.ec.";
+    private static final Map<String, String> generalEcAttributes;
+
+    /* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+    public static class Mappings extends AsymmetricAlgorithmProvider {
+        @Override // org.spongycastle.jcajce.provider.util.AlgorithmProvider
+        public final void configure(ConfigurableProvider configurableProvider) {
+            configurableProvider.addAlgorithm("AlgorithmParameters.EC", "org.spongycastle.jcajce.provider.asymmetric.ec.AlgorithmParametersSpi");
+            configurableProvider.addAttributes("KeyAgreement.ECDH", EC.generalEcAttributes);
+            configurableProvider.addAlgorithm("KeyAgreement.ECDH", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DH");
+            configurableProvider.addAttributes("KeyAgreement.ECDHC", EC.generalEcAttributes);
+            configurableProvider.addAlgorithm("KeyAgreement.ECDHC", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DHC");
+            configurableProvider.addAttributes("KeyAgreement.ECCDH", EC.generalEcAttributes);
+            configurableProvider.addAlgorithm("KeyAgreement.ECCDH", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DHC");
+            StringBuilder sb = new StringBuilder("KeyAgreement.");
+            ASN1ObjectIdentifier aSN1ObjectIdentifier = X9ObjectIdentifiers.dhSinglePass_stdDH_sha1kdf_scheme;
+            StringBuilder sbS = i90.s(sb, aSN1ObjectIdentifier, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DHwithSHA1KDFAndSharedInfo", "KeyAgreement.");
+            ASN1ObjectIdentifier aSN1ObjectIdentifier2 = X9ObjectIdentifiers.dhSinglePass_cofactorDH_sha1kdf_scheme;
+            StringBuilder sbS2 = i90.s(sbS, aSN1ObjectIdentifier2, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$CDHwithSHA1KDFAndSharedInfo", "KeyAgreement.");
+            ASN1ObjectIdentifier aSN1ObjectIdentifier3 = SECObjectIdentifiers.dhSinglePass_stdDH_sha224kdf_scheme;
+            StringBuilder sbS3 = i90.s(sbS2, aSN1ObjectIdentifier3, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DHwithSHA224KDFAndSharedInfo", "KeyAgreement.");
+            ASN1ObjectIdentifier aSN1ObjectIdentifier4 = SECObjectIdentifiers.dhSinglePass_cofactorDH_sha224kdf_scheme;
+            StringBuilder sbS4 = i90.s(sbS3, aSN1ObjectIdentifier4, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$CDHwithSHA224KDFAndSharedInfo", "KeyAgreement.");
+            ASN1ObjectIdentifier aSN1ObjectIdentifier5 = SECObjectIdentifiers.dhSinglePass_stdDH_sha256kdf_scheme;
+            StringBuilder sbS5 = i90.s(sbS4, aSN1ObjectIdentifier5, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DHwithSHA256KDFAndSharedInfo", "KeyAgreement.");
+            ASN1ObjectIdentifier aSN1ObjectIdentifier6 = SECObjectIdentifiers.dhSinglePass_cofactorDH_sha256kdf_scheme;
+            StringBuilder sbS6 = i90.s(sbS5, aSN1ObjectIdentifier6, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$CDHwithSHA256KDFAndSharedInfo", "KeyAgreement.");
+            ASN1ObjectIdentifier aSN1ObjectIdentifier7 = SECObjectIdentifiers.dhSinglePass_stdDH_sha384kdf_scheme;
+            StringBuilder sbS7 = i90.s(sbS6, aSN1ObjectIdentifier7, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DHwithSHA384KDFAndSharedInfo", "KeyAgreement.");
+            ASN1ObjectIdentifier aSN1ObjectIdentifier8 = SECObjectIdentifiers.dhSinglePass_cofactorDH_sha384kdf_scheme;
+            StringBuilder sbS8 = i90.s(sbS7, aSN1ObjectIdentifier8, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$CDHwithSHA384KDFAndSharedInfo", "KeyAgreement.");
+            ASN1ObjectIdentifier aSN1ObjectIdentifier9 = SECObjectIdentifiers.dhSinglePass_stdDH_sha512kdf_scheme;
+            StringBuilder sbS9 = i90.s(sbS8, aSN1ObjectIdentifier9, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DHwithSHA512KDFAndSharedInfo", "KeyAgreement.");
+            ASN1ObjectIdentifier aSN1ObjectIdentifier10 = SECObjectIdentifiers.dhSinglePass_cofactorDH_sha512kdf_scheme;
+            i90.z(sbS9, aSN1ObjectIdentifier10, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$CDHwithSHA512KDFAndSharedInfo");
+            configurableProvider.addAlgorithm("KeyAgreement.ECDHWITHSHA1KDF", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DHwithSHA1KDF");
+            configurableProvider.addAlgorithm("KeyAgreement.ECCDHWITHSHA1CKDF", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DHwithSHA1CKDF");
+            configurableProvider.addAlgorithm("KeyAgreement.ECCDHWITHSHA256CKDF", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DHwithSHA256CKDF");
+            configurableProvider.addAlgorithm("KeyAgreement.ECCDHWITHSHA384CKDF", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DHwithSHA384CKDF");
+            configurableProvider.addAlgorithm("KeyAgreement.ECCDHWITHSHA512CKDF", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$DHwithSHA512CKDF");
+            ASN1ObjectIdentifier aSN1ObjectIdentifier11 = X9ObjectIdentifiers.id_ecPublicKey;
+            registerOid(configurableProvider, aSN1ObjectIdentifier11, "EC", new KeyFactorySpi.EC());
+            registerOid(configurableProvider, aSN1ObjectIdentifier2, "EC", new KeyFactorySpi.EC());
+            ASN1ObjectIdentifier aSN1ObjectIdentifier12 = X9ObjectIdentifiers.mqvSinglePass_sha1kdf_scheme;
+            registerOid(configurableProvider, aSN1ObjectIdentifier12, "ECMQV", new KeyFactorySpi.ECMQV());
+            registerOid(configurableProvider, aSN1ObjectIdentifier3, "EC", new KeyFactorySpi.EC());
+            registerOid(configurableProvider, aSN1ObjectIdentifier4, "EC", new KeyFactorySpi.EC());
+            registerOid(configurableProvider, aSN1ObjectIdentifier5, "EC", new KeyFactorySpi.EC());
+            registerOid(configurableProvider, aSN1ObjectIdentifier6, "EC", new KeyFactorySpi.EC());
+            registerOid(configurableProvider, aSN1ObjectIdentifier7, "EC", new KeyFactorySpi.EC());
+            registerOid(configurableProvider, aSN1ObjectIdentifier8, "EC", new KeyFactorySpi.EC());
+            registerOid(configurableProvider, aSN1ObjectIdentifier9, "EC", new KeyFactorySpi.EC());
+            registerOid(configurableProvider, aSN1ObjectIdentifier10, "EC", new KeyFactorySpi.EC());
+            registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier11, "EC");
+            registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier, "EC");
+            registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier2, "EC");
+            registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier3, "EC");
+            registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier4, "EC");
+            registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier5, "EC");
+            registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier6, "EC");
+            registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier7, "EC");
+            registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier8, "EC");
+            registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier9, "EC");
+            registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier10, "EC");
+            if (!Properties.isOverrideSet("org.spongycastle.ec.disable_mqv")) {
+                configurableProvider.addAlgorithm("KeyAgreement.ECMQV", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$MQV");
+                configurableProvider.addAlgorithm("KeyAgreement.ECMQVWITHSHA1CKDF", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$MQVwithSHA1CKDF");
+                configurableProvider.addAlgorithm("KeyAgreement.ECMQVWITHSHA224CKDF", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$MQVwithSHA224CKDF");
+                configurableProvider.addAlgorithm("KeyAgreement.ECMQVWITHSHA256CKDF", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$MQVwithSHA256CKDF");
+                configurableProvider.addAlgorithm("KeyAgreement.ECMQVWITHSHA384CKDF", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$MQVwithSHA384CKDF");
+                configurableProvider.addAlgorithm("KeyAgreement.ECMQVWITHSHA512CKDF", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$MQVwithSHA512CKDF");
+                configurableProvider.addAlgorithm("KeyAgreement." + aSN1ObjectIdentifier12, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$MQVwithSHA1KDFAndSharedInfo");
+                StringBuilder sb2 = new StringBuilder("KeyAgreement.");
+                ASN1ObjectIdentifier aSN1ObjectIdentifier13 = SECObjectIdentifiers.mqvSinglePass_sha224kdf_scheme;
+                StringBuilder sbS10 = i90.s(sb2, aSN1ObjectIdentifier13, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$MQVwithSHA224KDFAndSharedInfo", "KeyAgreement.");
+                ASN1ObjectIdentifier aSN1ObjectIdentifier14 = SECObjectIdentifiers.mqvSinglePass_sha256kdf_scheme;
+                StringBuilder sbS11 = i90.s(sbS10, aSN1ObjectIdentifier14, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$MQVwithSHA256KDFAndSharedInfo", "KeyAgreement.");
+                ASN1ObjectIdentifier aSN1ObjectIdentifier15 = SECObjectIdentifiers.mqvSinglePass_sha384kdf_scheme;
+                StringBuilder sbS12 = i90.s(sbS11, aSN1ObjectIdentifier15, configurableProvider, "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$MQVwithSHA384KDFAndSharedInfo", "KeyAgreement.");
+                ASN1ObjectIdentifier aSN1ObjectIdentifier16 = SECObjectIdentifiers.mqvSinglePass_sha512kdf_scheme;
+                sbS12.append(aSN1ObjectIdentifier16);
+                configurableProvider.addAlgorithm(sbS12.toString(), "org.spongycastle.jcajce.provider.asymmetric.ec.KeyAgreementSpi$MQVwithSHA512KDFAndSharedInfo");
+                registerOid(configurableProvider, aSN1ObjectIdentifier, "EC", new KeyFactorySpi.EC());
+                registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier12, "EC");
+                registerOid(configurableProvider, aSN1ObjectIdentifier13, "ECMQV", new KeyFactorySpi.ECMQV());
+                registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier14, "EC");
+                registerOid(configurableProvider, aSN1ObjectIdentifier14, "ECMQV", new KeyFactorySpi.ECMQV());
+                registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier13, "EC");
+                registerOid(configurableProvider, aSN1ObjectIdentifier15, "ECMQV", new KeyFactorySpi.ECMQV());
+                registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier15, "EC");
+                registerOid(configurableProvider, aSN1ObjectIdentifier16, "ECMQV", new KeyFactorySpi.ECMQV());
+                registerOidAlgorithmParameters(configurableProvider, aSN1ObjectIdentifier16, "EC");
+                configurableProvider.addAlgorithm("KeyFactory.ECMQV", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyFactorySpi$ECMQV");
+                configurableProvider.addAlgorithm("KeyPairGenerator.ECMQV", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyPairGeneratorSpi$ECMQV");
+            }
+            configurableProvider.addAlgorithm("KeyFactory.EC", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyFactorySpi$EC");
+            configurableProvider.addAlgorithm("KeyFactory.ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyFactorySpi$ECDSA");
+            configurableProvider.addAlgorithm("KeyFactory.ECDH", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyFactorySpi$ECDH");
+            configurableProvider.addAlgorithm("KeyFactory.ECDHC", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyFactorySpi$ECDHC");
+            configurableProvider.addAlgorithm("KeyPairGenerator.EC", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyPairGeneratorSpi$EC");
+            configurableProvider.addAlgorithm("KeyPairGenerator.ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyPairGeneratorSpi$ECDSA");
+            configurableProvider.addAlgorithm("KeyPairGenerator.ECDH", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyPairGeneratorSpi$ECDH");
+            configurableProvider.addAlgorithm("KeyPairGenerator.ECDHWITHSHA1KDF", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyPairGeneratorSpi$ECDH");
+            configurableProvider.addAlgorithm("KeyPairGenerator.ECDHC", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyPairGeneratorSpi$ECDHC");
+            configurableProvider.addAlgorithm("KeyPairGenerator.ECIES", "org.spongycastle.jcajce.provider.asymmetric.ec.KeyPairGeneratorSpi$ECDH");
+            configurableProvider.addAlgorithm("Cipher.ECIES", "org.spongycastle.jcajce.provider.asymmetric.ec.IESCipher$ECIES");
+            configurableProvider.addAlgorithm("Cipher.ECIESwithAES-CBC", "org.spongycastle.jcajce.provider.asymmetric.ec.IESCipher$ECIESwithAESCBC");
+            configurableProvider.addAlgorithm("Cipher.ECIESWITHAES-CBC", "org.spongycastle.jcajce.provider.asymmetric.ec.IESCipher$ECIESwithAESCBC");
+            configurableProvider.addAlgorithm("Cipher.ECIESwithDESEDE-CBC", "org.spongycastle.jcajce.provider.asymmetric.ec.IESCipher$ECIESwithDESedeCBC");
+            configurableProvider.addAlgorithm("Cipher.ECIESWITHDESEDE-CBC", "org.spongycastle.jcajce.provider.asymmetric.ec.IESCipher$ECIESwithDESedeCBC");
+            configurableProvider.addAlgorithm("Signature.ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDSA");
+            configurableProvider.addAlgorithm("Signature.NONEwithECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDSAnone");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.SHA1withECDSA", "ECDSA");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.ECDSAwithSHA1", "ECDSA");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.SHA1WITHECDSA", "ECDSA");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.ECDSAWITHSHA1", "ECDSA");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.SHA1WithECDSA", "ECDSA");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.ECDSAWithSHA1", "ECDSA");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.1.2.840.10045.4.1", "ECDSA");
+            i90.z(new StringBuilder("Alg.Alias.Signature."), TeleTrusTObjectIdentifiers.ecSignWithSha1, configurableProvider, "ECDSA");
+            configurableProvider.addAlgorithm("Signature.ECDDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDetDSA");
+            configurableProvider.addAlgorithm("Signature.SHA1WITHECDDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDetDSA");
+            configurableProvider.addAlgorithm("Signature.SHA224WITHECDDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDetDSA224");
+            configurableProvider.addAlgorithm("Signature.SHA256WITHECDDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDetDSA256");
+            configurableProvider.addAlgorithm("Signature.SHA384WITHECDDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDetDSA384");
+            configurableProvider.addAlgorithm("Signature.SHA512WITHECDDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDetDSA512");
+            configurableProvider.addAlgorithm("Signature.SHA3-224WITHECDDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDetDSASha3_224");
+            configurableProvider.addAlgorithm("Signature.SHA3-256WITHECDDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDetDSASha3_256");
+            configurableProvider.addAlgorithm("Signature.SHA3-384WITHECDDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDetDSASha3_384");
+            configurableProvider.addAlgorithm("Signature.SHA3-512WITHECDDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDetDSASha3_512");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.DETECDSA", "ECDDSA");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.SHA1WITHDETECDSA", "SHA1WITHECDDSA");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.SHA224WITHDETECDSA", "SHA224WITHECDDSA");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.SHA256WITHDETECDSA", "SHA256WITHECDDSA");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.SHA384WITHDETECDSA", "SHA384WITHECDDSA");
+            configurableProvider.addAlgorithm("Alg.Alias.Signature.SHA512WITHDETECDSA", "SHA512WITHECDDSA");
+            addSignatureAlgorithm(configurableProvider, "SHA224", "ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDSA224", X9ObjectIdentifiers.ecdsa_with_SHA224);
+            addSignatureAlgorithm(configurableProvider, "SHA256", "ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDSA256", X9ObjectIdentifiers.ecdsa_with_SHA256);
+            addSignatureAlgorithm(configurableProvider, "SHA384", "ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDSA384", X9ObjectIdentifiers.ecdsa_with_SHA384);
+            addSignatureAlgorithm(configurableProvider, "SHA512", "ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDSA512", X9ObjectIdentifiers.ecdsa_with_SHA512);
+            addSignatureAlgorithm(configurableProvider, "SHA3-224", "ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDSASha3_224", NISTObjectIdentifiers.id_ecdsa_with_sha3_224);
+            addSignatureAlgorithm(configurableProvider, SPHINCS256KeyGenParameterSpec.SHA3_256, "ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDSASha3_256", NISTObjectIdentifiers.id_ecdsa_with_sha3_256);
+            addSignatureAlgorithm(configurableProvider, "SHA3-384", "ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDSASha3_384", NISTObjectIdentifiers.id_ecdsa_with_sha3_384);
+            addSignatureAlgorithm(configurableProvider, "SHA3-512", "ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDSASha3_512", NISTObjectIdentifiers.id_ecdsa_with_sha3_512);
+            addSignatureAlgorithm(configurableProvider, "RIPEMD160", "ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecDSARipeMD160", TeleTrusTObjectIdentifiers.ecSignWithRipemd160);
+            configurableProvider.addAlgorithm("Signature.SHA1WITHECNR", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecNR");
+            configurableProvider.addAlgorithm("Signature.SHA224WITHECNR", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecNR224");
+            configurableProvider.addAlgorithm("Signature.SHA256WITHECNR", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecNR256");
+            configurableProvider.addAlgorithm("Signature.SHA384WITHECNR", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecNR384");
+            configurableProvider.addAlgorithm("Signature.SHA512WITHECNR", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecNR512");
+            addSignatureAlgorithm(configurableProvider, "SHA1", "CVC-ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecCVCDSA", EACObjectIdentifiers.id_TA_ECDSA_SHA_1);
+            addSignatureAlgorithm(configurableProvider, "SHA224", "CVC-ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecCVCDSA224", EACObjectIdentifiers.id_TA_ECDSA_SHA_224);
+            addSignatureAlgorithm(configurableProvider, "SHA256", "CVC-ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecCVCDSA256", EACObjectIdentifiers.id_TA_ECDSA_SHA_256);
+            addSignatureAlgorithm(configurableProvider, "SHA384", "CVC-ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecCVCDSA384", EACObjectIdentifiers.id_TA_ECDSA_SHA_384);
+            addSignatureAlgorithm(configurableProvider, "SHA512", "CVC-ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecCVCDSA512", EACObjectIdentifiers.id_TA_ECDSA_SHA_512);
+            addSignatureAlgorithm(configurableProvider, "SHA1", "PLAIN-ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecCVCDSA", BSIObjectIdentifiers.ecdsa_plain_SHA1);
+            addSignatureAlgorithm(configurableProvider, "SHA224", "PLAIN-ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecCVCDSA224", BSIObjectIdentifiers.ecdsa_plain_SHA224);
+            addSignatureAlgorithm(configurableProvider, "SHA256", "PLAIN-ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecCVCDSA256", BSIObjectIdentifiers.ecdsa_plain_SHA256);
+            addSignatureAlgorithm(configurableProvider, "SHA384", "PLAIN-ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecCVCDSA384", BSIObjectIdentifiers.ecdsa_plain_SHA384);
+            addSignatureAlgorithm(configurableProvider, "SHA512", "PLAIN-ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecCVCDSA512", BSIObjectIdentifiers.ecdsa_plain_SHA512);
+            addSignatureAlgorithm(configurableProvider, "RIPEMD160", "PLAIN-ECDSA", "org.spongycastle.jcajce.provider.asymmetric.ec.SignatureSpi$ecPlainDSARP160", BSIObjectIdentifiers.ecdsa_plain_RIPEMD160);
+        }
+    }
+
+    static {
+        HashMap map = new HashMap();
+        generalEcAttributes = map;
+        map.put("SupportedKeyClasses", "java.security.interfaces.ECPublicKey|java.security.interfaces.ECPrivateKey");
+        map.put("SupportedKeyFormats", "PKCS#8|X.509");
+    }
+}

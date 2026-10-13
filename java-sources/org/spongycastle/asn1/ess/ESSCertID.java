@@ -1,0 +1,68 @@
+package org.spongycastle.asn1.ess;
+
+import defpackage.i90;
+import defpackage.zb1;
+import org.spongycastle.asn1.ASN1EncodableVector;
+import org.spongycastle.asn1.ASN1Object;
+import org.spongycastle.asn1.ASN1OctetString;
+import org.spongycastle.asn1.ASN1Primitive;
+import org.spongycastle.asn1.ASN1Sequence;
+import org.spongycastle.asn1.DEROctetString;
+import org.spongycastle.asn1.DERSequence;
+import org.spongycastle.asn1.x509.IssuerSerial;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes4.dex */
+public class ESSCertID extends ASN1Object {
+    private ASN1OctetString certHash;
+    private IssuerSerial issuerSerial;
+
+    private ESSCertID(ASN1Sequence aSN1Sequence) {
+        if (aSN1Sequence.size() < 1 || aSN1Sequence.size() > 2) {
+            zb1.l(i90.p(aSN1Sequence, new StringBuilder("Bad sequence size: ")));
+            throw null;
+        }
+        this.certHash = ASN1OctetString.getInstance(aSN1Sequence.getObjectAt(0));
+        if (aSN1Sequence.size() > 1) {
+            this.issuerSerial = IssuerSerial.getInstance(aSN1Sequence.getObjectAt(1));
+        }
+    }
+
+    public static ESSCertID getInstance(Object obj) {
+        if (obj instanceof ESSCertID) {
+            return (ESSCertID) obj;
+        }
+        if (obj != null) {
+            return new ESSCertID(ASN1Sequence.getInstance(obj));
+        }
+        return null;
+    }
+
+    public final byte[] getCertHash() {
+        return this.certHash.getOctets();
+    }
+
+    public final IssuerSerial getIssuerSerial() {
+        return this.issuerSerial;
+    }
+
+    @Override // org.spongycastle.asn1.ASN1Object, org.spongycastle.asn1.ASN1Encodable
+    public final ASN1Primitive toASN1Primitive() {
+        ASN1EncodableVector aSN1EncodableVector = new ASN1EncodableVector();
+        aSN1EncodableVector.add(this.certHash);
+        IssuerSerial issuerSerial = this.issuerSerial;
+        if (issuerSerial != null) {
+            aSN1EncodableVector.add(issuerSerial);
+        }
+        return new DERSequence(aSN1EncodableVector);
+    }
+
+    public ESSCertID(byte[] bArr) {
+        this.certHash = new DEROctetString(bArr);
+    }
+
+    public ESSCertID(byte[] bArr, IssuerSerial issuerSerial) {
+        this.certHash = new DEROctetString(bArr);
+        this.issuerSerial = issuerSerial;
+    }
+}

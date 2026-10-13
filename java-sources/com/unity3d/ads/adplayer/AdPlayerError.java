@@ -1,0 +1,15 @@
+package com.unity3d.ads.adplayer;
+
+import defpackage.z01;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes3.dex */
+public abstract class AdPlayerError extends Exception {
+    public /* synthetic */ AdPlayerError(String str, z01 z01Var) {
+        this(str);
+    }
+
+    private AdPlayerError(String str) {
+        super(str);
+    }
+}

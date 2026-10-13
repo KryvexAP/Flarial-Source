@@ -1,0 +1,160 @@
+package com.mbridge.msdk.foundation.tools;
+
+import android.text.TextUtils;
+import com.applovin.shadow.okio.Utf8;
+import java.util.HashMap;
+import java.util.Map;
+import org.spongycastle.math.ec.Tnaf;
+import org.spongycastle.pqc.math.linearalgebra.Matrix;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes2.dex */
+public class k0 {
+    private static Map<Character, Character> a;
+    private static Map<Character, Character> b;
+    private static byte[] c = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, Utf8.REPLACEMENT_BYTE, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, Tnaf.POW_2_WIDTH, 17, 18, 19, 20, 21, 22, 23, 24, 25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1, -1, -1};
+    private static char[] d = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', Matrix.MATRIX_TYPE_RANDOM_LT, 'M', 'N', 'O', 'P', 'Q', Matrix.MATRIX_TYPE_RANDOM_REGULAR, 'S', 'T', Matrix.MATRIX_TYPE_RANDOM_UT, 'V', 'W', 'X', 'Y', Matrix.MATRIX_TYPE_ZERO, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'};
+
+    static {
+        HashMap map = new HashMap();
+        a = map;
+        map.put('v', 'A');
+        a.put('S', 'B');
+        a.put('o', 'C');
+        a.put('a', 'D');
+        a.put('j', 'E');
+        a.put('c', 'F');
+        a.put('7', 'G');
+        a.put('d', 'H');
+        a.put(Character.valueOf(Matrix.MATRIX_TYPE_RANDOM_REGULAR), 'I');
+        a.put('z', 'J');
+        a.put('p', 'K');
+        a.put('W', Character.valueOf(Matrix.MATRIX_TYPE_RANDOM_LT));
+        a.put('i', 'M');
+        a.put('f', 'N');
+        a.put('G', 'O');
+        a.put('y', 'P');
+        a.put('N', 'Q');
+        a.put('x', Character.valueOf(Matrix.MATRIX_TYPE_RANDOM_REGULAR));
+        a.put(Character.valueOf(Matrix.MATRIX_TYPE_ZERO), 'S');
+        a.put('n', 'T');
+        a.put('V', Character.valueOf(Matrix.MATRIX_TYPE_RANDOM_UT));
+        a.put('5', 'V');
+        a.put('k', 'W');
+        a.put('+', 'X');
+        a.put('D', 'Y');
+        a.put('H', Character.valueOf(Matrix.MATRIX_TYPE_ZERO));
+        a.put(Character.valueOf(Matrix.MATRIX_TYPE_RANDOM_LT), 'a');
+        a.put('Y', 'b');
+        a.put('h', 'c');
+        a.put('J', 'd');
+        a.put('4', 'e');
+        a.put('6', 'f');
+        a.put('l', 'g');
+        a.put('t', 'h');
+        a.put('0', 'i');
+        a.put(Character.valueOf(Matrix.MATRIX_TYPE_RANDOM_UT), 'j');
+        a.put('3', 'k');
+        a.put('Q', 'l');
+        a.put('r', 'm');
+        a.put('g', 'n');
+        a.put('E', 'o');
+        a.put('u', 'p');
+        a.put('q', 'q');
+        a.put('8', 'r');
+        a.put('s', 's');
+        a.put('w', 't');
+        a.put('/', 'u');
+        a.put('X', 'v');
+        a.put('M', 'w');
+        a.put('e', 'x');
+        a.put('B', 'y');
+        a.put('A', 'z');
+        a.put('T', '0');
+        a.put('2', '1');
+        a.put('F', '2');
+        a.put('b', '3');
+        a.put('9', '4');
+        a.put('P', '5');
+        a.put('1', '6');
+        a.put('O', '7');
+        a.put('I', '8');
+        a.put('K', '9');
+        a.put('m', '+');
+        a.put('C', '/');
+        HashMap map2 = new HashMap();
+        b = map2;
+        map2.put('A', 'v');
+        b.put('B', 'S');
+        b.put('C', 'o');
+        b.put('D', 'a');
+        b.put('E', 'j');
+        b.put('F', 'c');
+        b.put('G', '7');
+        b.put('H', 'd');
+        b.put('I', Character.valueOf(Matrix.MATRIX_TYPE_RANDOM_REGULAR));
+        b.put('J', 'z');
+        b.put('K', 'p');
+        b.put(Character.valueOf(Matrix.MATRIX_TYPE_RANDOM_LT), 'W');
+        b.put('M', 'i');
+        b.put('N', 'f');
+        b.put('O', 'G');
+        b.put('P', 'y');
+        b.put('Q', 'N');
+        b.put(Character.valueOf(Matrix.MATRIX_TYPE_RANDOM_REGULAR), 'x');
+        b.put('S', Character.valueOf(Matrix.MATRIX_TYPE_ZERO));
+        b.put('T', 'n');
+        b.put(Character.valueOf(Matrix.MATRIX_TYPE_RANDOM_UT), 'V');
+        b.put('V', '5');
+        b.put('W', 'k');
+        b.put('X', '+');
+        b.put('Y', 'D');
+        b.put(Character.valueOf(Matrix.MATRIX_TYPE_ZERO), 'H');
+        b.put('a', Character.valueOf(Matrix.MATRIX_TYPE_RANDOM_LT));
+        b.put('b', 'Y');
+        b.put('c', 'h');
+        b.put('d', 'J');
+        b.put('e', '4');
+        b.put('f', '6');
+        b.put('g', 'l');
+        b.put('h', 't');
+        b.put('i', '0');
+        b.put('j', Character.valueOf(Matrix.MATRIX_TYPE_RANDOM_UT));
+        b.put('k', '3');
+        b.put('l', 'Q');
+        b.put('m', 'r');
+        b.put('n', 'g');
+        b.put('o', 'E');
+        b.put('p', 'u');
+        b.put('q', 'q');
+        b.put('r', '8');
+        b.put('s', 's');
+        b.put('t', 'w');
+        b.put('u', '/');
+        b.put('v', 'X');
+        b.put('w', 'M');
+        b.put('x', 'e');
+        b.put('y', 'B');
+        b.put('z', 'A');
+        b.put('0', 'T');
+        b.put('1', '2');
+        b.put('2', 'F');
+        b.put('3', 'b');
+        b.put('4', '9');
+        b.put('5', 'P');
+        b.put('6', '1');
+        b.put('7', 'O');
+        b.put('8', 'I');
+        b.put('9', 'K');
+        b.put('+', 'm');
+        b.put('/', 'C');
+    }
+
+    public static String a(String str) {
+        return r0.b(str);
+    }
+
+    public static String b(String str) {
+        return TextUtils.isEmpty(str) ? "" : r0.c(str);
+    }
+}

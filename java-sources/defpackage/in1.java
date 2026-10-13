@@ -1,0 +1,25 @@
+package defpackage;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes.dex */
+public final class in1 extends sr0 {
+    public kn1 a;
+    public gn1 b;
+    public boolean c;
+    public /* synthetic */ Object d;
+    public final /* synthetic */ kn1 e;
+    public int f;
+
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public in1(kn1 kn1Var, sr0 sr0Var) {
+        super(sr0Var);
+        this.e = kn1Var;
+    }
+
+    @Override // defpackage.w00
+    public final Object invokeSuspend(Object obj) {
+        this.d = obj;
+        this.f |= Integer.MIN_VALUE;
+        return this.e.a(null, this);
+    }
+}

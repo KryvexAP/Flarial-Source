@@ -1,0 +1,12 @@
+package com.applovin.mediation;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes.dex */
+public interface MaxReward {
+    public static final int DEFAULT_AMOUNT = 0;
+    public static final String DEFAULT_LABEL = "";
+
+    int getAmount();
+
+    String getLabel();
+}

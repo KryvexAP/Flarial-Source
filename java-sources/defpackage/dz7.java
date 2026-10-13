@@ -1,0 +1,28 @@
+package defpackage;
+
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import com.google.android.gms.dynamite.descriptors.com.google.android.gms.ads.dynamite.ModuleDescriptor;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes2.dex */
+public final class dz7 extends jc6 {
+    public final py7 F2(sq3 sq3Var, db7 db7Var) {
+        py7 sx7Var;
+        Parcel parcelF0 = f0();
+        rz6.e(parcelF0, sq3Var);
+        rz6.e(parcelF0, db7Var);
+        parcelF0.writeInt(ModuleDescriptor.MODULE_VERSION);
+        Parcel parcelE0 = E0(1, parcelF0);
+        IBinder strongBinder = parcelE0.readStrongBinder();
+        if (strongBinder == null) {
+            sx7Var = null;
+        } else {
+            IInterface iInterfaceQueryLocalInterface = strongBinder.queryLocalInterface("com.google.android.gms.ads.internal.client.IOutOfContextTester");
+            sx7Var = iInterfaceQueryLocalInterface instanceof py7 ? (py7) iInterfaceQueryLocalInterface : new sx7(strongBinder);
+        }
+        parcelE0.recycle();
+        return sx7Var;
+    }
+}

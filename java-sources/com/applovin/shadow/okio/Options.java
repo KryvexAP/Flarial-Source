@@ -1,0 +1,290 @@
+package com.applovin.shadow.okio;
+
+import defpackage.mh0;
+import defpackage.oh0;
+import defpackage.wm2;
+import defpackage.z0;
+import defpackage.z01;
+import defpackage.zb1;
+import defpackage.zn;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.RandomAccess;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes.dex */
+public final class Options extends z0 implements RandomAccess {
+    public static final Companion Companion = new Companion(null);
+    private final ByteString[] byteStrings;
+    private final int[] trie;
+
+    private Options(ByteString[] byteStringArr, int[] iArr) {
+        this.byteStrings = byteStringArr;
+        this.trie = iArr;
+    }
+
+    public static final Options of(ByteString... byteStringArr) {
+        return Companion.of(byteStringArr);
+    }
+
+    @Override // defpackage.b0, java.util.Collection
+    public final /* bridge */ boolean contains(Object obj) {
+        if (obj instanceof ByteString) {
+            return contains((ByteString) obj);
+        }
+        return false;
+    }
+
+    public final ByteString[] getByteStrings$okio() {
+        return this.byteStrings;
+    }
+
+    @Override // defpackage.b0
+    public int getSize() {
+        return this.byteStrings.length;
+    }
+
+    public final int[] getTrie$okio() {
+        return this.trie;
+    }
+
+    @Override // defpackage.z0, java.util.List
+    public final /* bridge */ int indexOf(Object obj) {
+        if (obj instanceof ByteString) {
+            return indexOf((ByteString) obj);
+        }
+        return -1;
+    }
+
+    @Override // defpackage.z0, java.util.List
+    public final /* bridge */ int lastIndexOf(Object obj) {
+        if (obj instanceof ByteString) {
+            return lastIndexOf((ByteString) obj);
+        }
+        return -1;
+    }
+
+    /* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+    public static final class Companion {
+        public /* synthetic */ Companion(z01 z01Var) {
+            this();
+        }
+
+        private final void buildTrieRecursive(long j, Buffer buffer, int i, List<? extends ByteString> list, int i2, int i3, List<Integer> list2) throws IOException {
+            int i4;
+            int i5;
+            long j2;
+            int i6;
+            long j3;
+            int i7 = i;
+            if (i2 >= i3) {
+                zb1.l("Failed requirement.");
+                return;
+            }
+            for (int i8 = i2; i8 < i3; i8++) {
+                if (list.get(i8).size() < i7) {
+                    zb1.l("Failed requirement.");
+                    return;
+                }
+            }
+            ByteString byteString = list.get(i2);
+            ByteString byteString2 = list.get(i3 - 1);
+            byte b = -1;
+            if (i7 == byteString.size()) {
+                int iIntValue = list2.get(i2).intValue();
+                int i9 = i2 + 1;
+                ByteString byteString3 = list.get(i9);
+                i4 = i9;
+                i5 = iIntValue;
+                byteString = byteString3;
+            } else {
+                i4 = i2;
+                i5 = -1;
+            }
+            long j4 = 2;
+            if (byteString.getByte(i7) == byteString2.getByte(i7)) {
+                int iMin = Math.min(byteString.size(), byteString2.size());
+                int i10 = 0;
+                int i11 = i7;
+                while (true) {
+                    byte b2 = b;
+                    if (i11 >= iMin) {
+                        j2 = j4;
+                        break;
+                    }
+                    j2 = j4;
+                    if (byteString.getByte(i11) != byteString2.getByte(i11)) {
+                        break;
+                    }
+                    i10++;
+                    i11++;
+                    b = b2;
+                    j4 = j2;
+                }
+                long intCount = j + getIntCount(buffer) + j2 + ((long) i10) + 1;
+                buffer.writeInt(-i10);
+                buffer.writeInt(i5);
+                int i12 = i7 + i10;
+                while (i7 < i12) {
+                    buffer.writeInt(byteString.getByte(i7) & 255);
+                    i7++;
+                }
+                if (i4 + 1 == i3) {
+                    if (i12 == list.get(i4).size()) {
+                        buffer.writeInt(list2.get(i4).intValue());
+                        return;
+                    } else {
+                        zb1.u("Check failed.");
+                        return;
+                    }
+                }
+                Buffer buffer2 = new Buffer();
+                buffer.writeInt(((int) (getIntCount(buffer2) + intCount)) * (-1));
+                buildTrieRecursive(intCount, buffer2, i12, list, i4, i3, list2);
+                buffer.writeAll(buffer2);
+                return;
+            }
+            int i13 = 1;
+            for (int i14 = i4 + 1; i14 < i3; i14++) {
+                if (list.get(i14 - 1).getByte(i7) != list.get(i14).getByte(i7)) {
+                    i13++;
+                }
+            }
+            long intCount2 = j + getIntCount(buffer) + 2 + ((long) (i13 * 2));
+            buffer.writeInt(i13);
+            buffer.writeInt(i5);
+            for (int i15 = i4; i15 < i3; i15++) {
+                byte b3 = list.get(i15).getByte(i7);
+                if (i15 == i4 || b3 != list.get(i15 - 1).getByte(i7)) {
+                    buffer.writeInt(b3 & 255);
+                }
+            }
+            Buffer buffer3 = new Buffer();
+            while (i4 < i3) {
+                byte b4 = list.get(i4).getByte(i7);
+                int i16 = i4 + 1;
+                int i17 = i16;
+                while (true) {
+                    if (i17 >= i3) {
+                        i6 = i3;
+                        break;
+                    } else {
+                        if (b4 != list.get(i17).getByte(i7)) {
+                            i6 = i17;
+                            break;
+                        }
+                        i17++;
+                    }
+                }
+                if (i16 == i6 && i7 + 1 == list.get(i4).size()) {
+                    buffer.writeInt(list2.get(i4).intValue());
+                    j3 = intCount2;
+                } else {
+                    buffer.writeInt(((int) (getIntCount(buffer3) + intCount2)) * (-1));
+                    j3 = intCount2;
+                    buildTrieRecursive(j3, buffer3, i7 + 1, list, i4, i6, list2);
+                }
+                intCount2 = j3;
+                i4 = i6;
+            }
+            buffer.writeAll(buffer3);
+        }
+
+        public static /* synthetic */ void buildTrieRecursive$default(Companion companion, long j, Buffer buffer, int i, List list, int i2, int i3, List list2, int i4, Object obj) throws IOException {
+            if ((i4 & 1) != 0) {
+                j = 0;
+            }
+            companion.buildTrieRecursive(j, buffer, (i4 & 4) != 0 ? 0 : i, list, (i4 & 16) != 0 ? 0 : i2, (i4 & 32) != 0 ? list.size() : i3, list2);
+        }
+
+        private final long getIntCount(Buffer buffer) {
+            return buffer.size() / 4;
+        }
+
+        public final Options of(ByteString... byteStringArr) throws IOException {
+            byteStringArr.getClass();
+            z01 z01Var = null;
+            int i = 0;
+            if (byteStringArr.length == 0) {
+                return new Options(new ByteString[0], new int[]{0, -1}, z01Var);
+            }
+            ArrayList arrayList = new ArrayList(new zn(byteStringArr, false));
+            oh0.k0(arrayList);
+            ArrayList arrayList2 = new ArrayList(byteStringArr.length);
+            for (ByteString byteString : byteStringArr) {
+                arrayList2.add(-1);
+            }
+            Integer[] numArr = (Integer[]) arrayList2.toArray(new Integer[0]);
+            ArrayList arrayListK = mh0.K(Arrays.copyOf(numArr, numArr.length));
+            int length = byteStringArr.length;
+            int i2 = 0;
+            int i3 = 0;
+            while (i2 < length) {
+                arrayListK.set(mh0.d(arrayList, byteStringArr[i2]), Integer.valueOf(i3));
+                i2++;
+                i3++;
+            }
+            if (((ByteString) arrayList.get(0)).size() <= 0) {
+                zb1.l("the empty byte string is not a supported option");
+                return null;
+            }
+            int i4 = 0;
+            while (i4 < arrayList.size()) {
+                ByteString byteString2 = (ByteString) arrayList.get(i4);
+                int i5 = i4 + 1;
+                int i6 = i5;
+                while (i6 < arrayList.size()) {
+                    ByteString byteString3 = (ByteString) arrayList.get(i6);
+                    if (!byteString3.startsWith(byteString2)) {
+                        break;
+                    }
+                    if (byteString3.size() == byteString2.size()) {
+                        wm2.t(byteString3, "duplicate option: ");
+                        return null;
+                    }
+                    if (((Number) arrayListK.get(i6)).intValue() > ((Number) arrayListK.get(i4)).intValue()) {
+                        arrayList.remove(i6);
+                        arrayListK.remove(i6);
+                    } else {
+                        i6++;
+                    }
+                }
+                i4 = i5;
+            }
+            Buffer buffer = new Buffer();
+            buildTrieRecursive$default(this, 0L, buffer, 0, arrayList, 0, 0, arrayListK, 53, null);
+            int[] iArr = new int[(int) getIntCount(buffer)];
+            while (!buffer.exhausted()) {
+                iArr[i] = buffer.readInt();
+                i++;
+            }
+            return new Options((ByteString[]) Arrays.copyOf(byteStringArr, byteStringArr.length), iArr, z01Var);
+        }
+
+        private Companion() {
+        }
+    }
+
+    @Override // java.util.List
+    public ByteString get(int i) {
+        return this.byteStrings[i];
+    }
+
+    public /* synthetic */ Options(ByteString[] byteStringArr, int[] iArr, z01 z01Var) {
+        this(byteStringArr, iArr);
+    }
+
+    public /* bridge */ boolean contains(ByteString byteString) {
+        return super.contains((Object) byteString);
+    }
+
+    public /* bridge */ int indexOf(ByteString byteString) {
+        return super.indexOf((Object) byteString);
+    }
+
+    public /* bridge */ int lastIndexOf(ByteString byteString) {
+        return super.lastIndexOf((Object) byteString);
+    }
+}

@@ -1,0 +1,17 @@
+package com.bytedance.sdk.openadsdk.api.open;
+
+import com.bytedance.sdk.openadsdk.api.PAGRequest;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes.dex */
+public class PAGAppOpenRequest extends PAGRequest {
+    private int qam;
+
+    public int getTimeout() {
+        return this.qam;
+    }
+
+    public void setTimeout(int i) {
+        this.qam = i;
+    }
+}

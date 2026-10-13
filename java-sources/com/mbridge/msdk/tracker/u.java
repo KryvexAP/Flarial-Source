@@ -1,0 +1,150 @@
+package com.mbridge.msdk.tracker;
+
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import java.util.HashMap;
+import org.json.JSONObject;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes3.dex */
+public class u {
+    private static volatile u g;
+    private m a;
+    private x b;
+    private volatile boolean c = false;
+    private int d = 30000;
+    private final HashMap<String, String> e = new HashMap<>();
+    Handler f = new a(Looper.getMainLooper());
+
+    /* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+    public class a extends Handler {
+        public a(Looper looper) {
+            super(looper);
+        }
+
+        @Override // android.os.Handler
+        public void handleMessage(Message message) {
+            super.handleMessage(message);
+            if (message.what != 1) {
+                return;
+            }
+            try {
+                u.this.b();
+                u.this.f.removeMessages(1);
+                u.this.d();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private u() {
+    }
+
+    public static u a() {
+        if (g == null) {
+            synchronized (u.class) {
+                try {
+                    if (g == null) {
+                        g = new u();
+                    }
+                } catch (Throwable th) {
+                    throw th;
+                }
+            }
+        }
+        return g;
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void d() {
+        try {
+            this.f.sendEmptyMessageDelayed(1, this.d);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /* JADX WARN: Code duplicated, block: B:18:0x0059 A[Catch: Exception -> 0x00ac, TRY_LEAVE, TryCatch #0 {Exception -> 0x00ac, blocks: (B:5:0x0009, B:7:0x000e, B:9:0x001c, B:12:0x002f, B:15:0x003b, B:18:0x0059, B:23:0x00a5, B:20:0x0071), top: B:28:0x0009, inners: #1 }] */
+    /* JADX WARN: Code duplicated, block: B:30:0x0071 A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /* JADX WARN: Code duplicated, block: B:37:0x00a8 A[SYNTHETIC] */
+    /* JADX WARN: Instruction removed from duplicated block: B:18:0x0059, please report this as an issue */
+    public void b() {
+        m[] mVarArrB = m.b();
+        if (mVarArrB.length == 0) {
+            return;
+        }
+        try {
+            for (m mVar : mVarArrB) {
+                String strF = mVar.f();
+                if (!"monitor".equals(strF)) {
+                    String strD = mVar.d();
+                    long[] jArrE = mVar.e();
+                    long j = jArrE[1];
+                    if (j != 0) {
+                        long j2 = jArrE[0];
+                        if (this.e.containsKey(strF)) {
+                            if (!(j2 + "").equals(this.e.get(strF))) {
+                                this.e.put(strF, j2 + "");
+                                if (this.a != null) {
+                                    try {
+                                        e eVar = new e("event_lib_monitor");
+                                        eVar.a(1);
+                                        JSONObject jSONObject = new JSONObject();
+                                        jSONObject.put("key", "m_report_rate");
+                                        jSONObject.put("task_name", strF);
+                                        jSONObject.put("task_count", j);
+                                        jSONObject.put("task_session_id", strD);
+                                        jSONObject.put("task_ts", j2);
+                                        eVar.a(jSONObject);
+                                        this.a.d(eVar);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        } else {
+                            this.e.put(strF, j2 + "");
+                            if (this.a != null) {
+                                e eVar2 = new e("event_lib_monitor");
+                                eVar2.a(1);
+                                JSONObject jSONObject2 = new JSONObject();
+                                jSONObject2.put("key", "m_report_rate");
+                                jSONObject2.put("task_name", strF);
+                                jSONObject2.put("task_count", j);
+                                jSONObject2.put("task_session_id", strD);
+                                jSONObject2.put("task_ts", j2);
+                                eVar2.a(jSONObject2);
+                                this.a.d(eVar2);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+    }
+
+    public synchronized void c() {
+        if (this.c) {
+            return;
+        }
+        this.c = true;
+        d();
+    }
+
+    public void a(Context context, x xVar, int i, JSONObject jSONObject) {
+        this.b = xVar;
+        this.d = i;
+        m mVarA = m.a("monitor", context, xVar);
+        this.a = mVarA;
+        if (mVarA != null) {
+            mVarA.a(jSONObject);
+            this.a.h();
+        }
+        c();
+    }
+}

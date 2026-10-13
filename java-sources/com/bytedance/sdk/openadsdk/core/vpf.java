@@ -1,0 +1,9 @@
+package com.bytedance.sdk.openadsdk.core;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes.dex */
+public interface vpf extends ev.qam {
+    String qam();
+
+    boolean qam(com.bytedance.sdk.openadsdk.core.model.qam qamVar);
+}

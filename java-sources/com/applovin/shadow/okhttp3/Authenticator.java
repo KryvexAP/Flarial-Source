@@ -1,0 +1,31 @@
+package com.applovin.shadow.okhttp3;
+
+import com.applovin.shadow.okhttp3.internal.authenticator.JavaNetAuthenticator;
+import java.io.IOException;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes.dex */
+public interface Authenticator {
+    public static final Companion Companion = Companion.$$INSTANCE;
+    public static final Authenticator NONE = new Companion.AuthenticatorNone();
+    public static final Authenticator JAVA_NET_AUTHENTICATOR = new JavaNetAuthenticator(null, 1, null);
+
+    /* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+    public static final class Companion {
+        static final /* synthetic */ Companion $$INSTANCE = new Companion();
+
+        /* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+        public static final class AuthenticatorNone implements Authenticator {
+            @Override // com.applovin.shadow.okhttp3.Authenticator
+            public Request authenticate(Route route, Response response) {
+                response.getClass();
+                return null;
+            }
+        }
+
+        private Companion() {
+        }
+    }
+
+    Request authenticate(Route route, Response response) throws IOException;
+}

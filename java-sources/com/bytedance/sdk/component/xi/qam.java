@@ -1,0 +1,19 @@
+package com.bytedance.sdk.component.xi;
+
+/* JADX INFO: compiled from: r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68 */
+/* JADX INFO: loaded from: classes.dex */
+public class qam {
+    private static com.bytedance.sdk.component.qam qam;
+
+    public static void qam(Runnable runnable) {
+        com.bytedance.sdk.component.qam qamVar = qam;
+        if (qamVar == null) {
+            return;
+        }
+        qamVar.qam(runnable);
+    }
+
+    public static void qam(com.bytedance.sdk.component.qam qamVar) {
+        qam = qamVar;
+    }
+}

@@ -2,7 +2,7 @@
 
 Reconstrução open-source a partir de `myapp.apk` para fins de estudo/teste do próprio autor.
 
-> Status: token GitHub fornecido retornou `401 Bad credentials` — repo local pronto, push pendente de token válido.
+> Status: publicado em https://github.com/vacuusvita/myapp-source (privado por enquanto, 3 commits).
 
 ## Proveniência
 - APK original: `myapp.apk` (45 MB, sha256 `6c3fd77c48b148a5b8ee8b8c904fcb30cc968a5dd4ba8316fe831720421e9b2c`)

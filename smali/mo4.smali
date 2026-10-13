@@ -1,0 +1,34 @@
+.class public interface abstract Lmo4;
+.super Ljava/lang/Object;
+.source "r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68"
+
+
+# virtual methods
+.method public abstract a()Z
+.end method
+
+.method public abstract b(ILpb4;Lsr0;)Ljava/lang/Object;
+.end method
+
+.method public c()Z
+    .locals 0
+
+    .line 1
+    const/4 p0, 0x1
+
+    .line 2
+    return p0
+.end method
+
+.method public d()Z
+    .locals 0
+
+    .line 1
+    const/4 p0, 0x1
+
+    .line 2
+    return p0
+.end method
+
+.method public abstract e(F)F
+.end method

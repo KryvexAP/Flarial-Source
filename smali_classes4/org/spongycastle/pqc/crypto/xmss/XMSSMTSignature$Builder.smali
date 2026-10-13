@@ -1,0 +1,212 @@
+.class public Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;
+.super Ljava/lang/Object;
+.source "r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x9
+    name = "Builder"
+.end annotation
+
+
+# instance fields
+.field private index:J
+
+.field private final params:Lorg/spongycastle/pqc/crypto/xmss/XMSSMTParameters;
+
+.field private random:[B
+
+.field private reducedSignatures:Ljava/util/List;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/List<",
+            "Lorg/spongycastle/pqc/crypto/xmss/XMSSReducedSignature;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private signature:[B
+
+
+# direct methods
+.method public constructor <init>(Lorg/spongycastle/pqc/crypto/xmss/XMSSMTParameters;)V
+    .locals 2
+
+    .line 1
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 2
+    .line 3
+    .line 4
+    const-wide/16 v0, 0x0
+
+    .line 5
+    .line 6
+    iput-wide v0, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->index:J
+
+    .line 7
+    .line 8
+    const/4 v0, 0x0
+
+    .line 9
+    iput-object v0, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->random:[B
+
+    .line 10
+    .line 11
+    iput-object v0, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->reducedSignatures:Ljava/util/List;
+
+    .line 12
+    .line 13
+    iput-object v0, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->signature:[B
+
+    .line 14
+    .line 15
+    iput-object p1, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->params:Lorg/spongycastle/pqc/crypto/xmss/XMSSMTParameters;
+
+    .line 16
+    .line 17
+    return-void
+.end method
+
+.method public static synthetic access$000(Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;)Lorg/spongycastle/pqc/crypto/xmss/XMSSMTParameters;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->params:Lorg/spongycastle/pqc/crypto/xmss/XMSSMTParameters;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public static synthetic access$100(Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;)[B
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->signature:[B
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public static synthetic access$200(Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;)J
+    .locals 2
+
+    .line 1
+    iget-wide v0, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->index:J
+
+    .line 2
+    .line 3
+    return-wide v0
+.end method
+
+.method public static synthetic access$300(Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;)[B
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->random:[B
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public static synthetic access$400(Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;)Ljava/util/List;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->reducedSignatures:Ljava/util/List;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+
+# virtual methods
+.method public final build()Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature;
+    .locals 2
+
+    .line 1
+    new-instance v0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature;
+
+    .line 2
+    .line 3
+    const/4 v1, 0x0
+
+    .line 4
+    invoke-direct {v0, p0, v1}, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature;-><init>(Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$1;)V
+
+    .line 5
+    .line 6
+    .line 7
+    return-object v0
+.end method
+
+.method public final withIndex(J)Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;
+    .locals 0
+
+    .line 1
+    iput-wide p1, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->index:J
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public final withRandom([B)Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;
+    .locals 0
+
+    .line 1
+    invoke-static {p1}, Lorg/spongycastle/pqc/crypto/xmss/XMSSUtil;->cloneArray([B)[B
+
+    .line 2
+    .line 3
+    .line 4
+    move-result-object p1
+
+    .line 5
+    iput-object p1, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->random:[B
+
+    .line 6
+    .line 7
+    return-object p0
+.end method
+
+.method public final withReducedSignatures(Ljava/util/List;)Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;
+    .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/List<",
+            "Lorg/spongycastle/pqc/crypto/xmss/XMSSReducedSignature;",
+            ">;)",
+            "Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;"
+        }
+    .end annotation
+
+    .line 1
+    iput-object p1, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->reducedSignatures:Ljava/util/List;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public final withSignature([B)Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;
+    .locals 0
+
+    .line 1
+    iput-object p1, p0, Lorg/spongycastle/pqc/crypto/xmss/XMSSMTSignature$Builder;->signature:[B
+
+    .line 2
+    .line 3
+    return-object p0
+.end method

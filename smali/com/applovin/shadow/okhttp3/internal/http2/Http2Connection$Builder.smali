@@ -1,0 +1,741 @@
+.class public final Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+.super Ljava/lang/Object;
+.source "r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = "Builder"
+.end annotation
+
+
+# instance fields
+.field private client:Z
+
+.field public connectionName:Ljava/lang/String;
+
+.field private listener:Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Listener;
+
+.field private pingIntervalMillis:I
+
+.field private pushObserver:Lcom/applovin/shadow/okhttp3/internal/http2/PushObserver;
+
+.field public sink:Lcom/applovin/shadow/okio/BufferedSink;
+
+.field public socket:Ljava/net/Socket;
+
+.field public source:Lcom/applovin/shadow/okio/BufferedSource;
+
+.field private final taskRunner:Lcom/applovin/shadow/okhttp3/internal/concurrent/TaskRunner;
+
+
+# direct methods
+.method public constructor <init>(ZLcom/applovin/shadow/okhttp3/internal/concurrent/TaskRunner;)V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p2}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 2
+    .line 3
+    .line 4
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 5
+    .line 6
+    .line 7
+    iput-boolean p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->client:Z
+
+    .line 8
+    .line 9
+    iput-object p2, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->taskRunner:Lcom/applovin/shadow/okhttp3/internal/concurrent/TaskRunner;
+
+    .line 10
+    .line 11
+    sget-object p1, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Listener;->REFUSE_INCOMING_STREAMS:Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Listener;
+
+    .line 12
+    .line 13
+    iput-object p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->listener:Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Listener;
+
+    .line 14
+    .line 15
+    sget-object p1, Lcom/applovin/shadow/okhttp3/internal/http2/PushObserver;->CANCEL:Lcom/applovin/shadow/okhttp3/internal/http2/PushObserver;
+
+    .line 16
+    .line 17
+    iput-object p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->pushObserver:Lcom/applovin/shadow/okhttp3/internal/http2/PushObserver;
+
+    .line 18
+    .line 19
+    return-void
+.end method
+
+.method public static synthetic socket$default(Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;Ljava/net/Socket;Ljava/lang/String;Lcom/applovin/shadow/okio/BufferedSource;Lcom/applovin/shadow/okio/BufferedSink;ILjava/lang/Object;)Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 1
+    and-int/lit8 p6, p5, 0x2
+
+    .line 2
+    .line 3
+    if-eqz p6, :cond_0
+
+    .line 4
+    .line 5
+    invoke-static {p1}, Lcom/applovin/shadow/okhttp3/internal/Util;->peerName(Ljava/net/Socket;)Ljava/lang/String;
+
+    .line 6
+    .line 7
+    .line 8
+    move-result-object p2
+
+    .line 9
+    :cond_0
+    and-int/lit8 p6, p5, 0x4
+
+    .line 10
+    .line 11
+    if-eqz p6, :cond_1
+
+    .line 12
+    .line 13
+    invoke-static {p1}, Lcom/applovin/shadow/okio/Okio;->source(Ljava/net/Socket;)Lcom/applovin/shadow/okio/Source;
+
+    .line 14
+    .line 15
+    .line 16
+    move-result-object p3
+
+    .line 17
+    invoke-static {p3}, Lcom/applovin/shadow/okio/Okio;->buffer(Lcom/applovin/shadow/okio/Source;)Lcom/applovin/shadow/okio/BufferedSource;
+
+    .line 18
+    .line 19
+    .line 20
+    move-result-object p3
+
+    .line 21
+    :cond_1
+    and-int/lit8 p5, p5, 0x8
+
+    .line 22
+    .line 23
+    if-eqz p5, :cond_2
+
+    .line 24
+    .line 25
+    invoke-static {p1}, Lcom/applovin/shadow/okio/Okio;->sink(Ljava/net/Socket;)Lcom/applovin/shadow/okio/Sink;
+
+    .line 26
+    .line 27
+    .line 28
+    move-result-object p4
+
+    .line 29
+    invoke-static {p4}, Lcom/applovin/shadow/okio/Okio;->buffer(Lcom/applovin/shadow/okio/Sink;)Lcom/applovin/shadow/okio/BufferedSink;
+
+    .line 30
+    .line 31
+    .line 32
+    move-result-object p4
+
+    .line 33
+    :cond_2
+    invoke-virtual {p0, p1, p2, p3, p4}, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->socket(Ljava/net/Socket;Ljava/lang/String;Lcom/applovin/shadow/okio/BufferedSource;Lcom/applovin/shadow/okio/BufferedSink;)Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+
+    .line 34
+    .line 35
+    .line 36
+    move-result-object p0
+
+    .line 37
+    return-object p0
+.end method
+
+
+# virtual methods
+.method public final build()Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection;
+    .locals 1
+
+    .line 1
+    new-instance v0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection;
+
+    .line 2
+    .line 3
+    invoke-direct {v0, p0}, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection;-><init>(Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;)V
+
+    .line 4
+    .line 5
+    .line 6
+    return-object v0
+.end method
+
+.method public final getClient$okhttp()Z
+    .locals 0
+
+    .line 1
+    iget-boolean p0, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->client:Z
+
+    .line 2
+    .line 3
+    return p0
+.end method
+
+.method public final getConnectionName$okhttp()Ljava/lang/String;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->connectionName:Ljava/lang/String;
+
+    .line 2
+    .line 3
+    if-eqz p0, :cond_0
+
+    .line 4
+    .line 5
+    return-object p0
+
+    .line 6
+    :cond_0
+    const-string p0, "connectionName"
+
+    .line 7
+    .line 8
+    invoke-static {p0}, Lnl2;->b0(Ljava/lang/String;)V
+
+    .line 9
+    .line 10
+    .line 11
+    const/4 p0, 0x0
+
+    .line 12
+    throw p0
+.end method
+
+.method public final getListener$okhttp()Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Listener;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->listener:Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Listener;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public final getPingIntervalMillis$okhttp()I
+    .locals 0
+
+    .line 1
+    iget p0, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->pingIntervalMillis:I
+
+    .line 2
+    .line 3
+    return p0
+.end method
+
+.method public final getPushObserver$okhttp()Lcom/applovin/shadow/okhttp3/internal/http2/PushObserver;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->pushObserver:Lcom/applovin/shadow/okhttp3/internal/http2/PushObserver;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public final getSink$okhttp()Lcom/applovin/shadow/okio/BufferedSink;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->sink:Lcom/applovin/shadow/okio/BufferedSink;
+
+    .line 2
+    .line 3
+    if-eqz p0, :cond_0
+
+    .line 4
+    .line 5
+    return-object p0
+
+    .line 6
+    :cond_0
+    const-string p0, "sink"
+
+    .line 7
+    .line 8
+    invoke-static {p0}, Lnl2;->b0(Ljava/lang/String;)V
+
+    .line 9
+    .line 10
+    .line 11
+    const/4 p0, 0x0
+
+    .line 12
+    throw p0
+.end method
+
+.method public final getSocket$okhttp()Ljava/net/Socket;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->socket:Ljava/net/Socket;
+
+    .line 2
+    .line 3
+    if-eqz p0, :cond_0
+
+    .line 4
+    .line 5
+    return-object p0
+
+    .line 6
+    :cond_0
+    const-string p0, "socket"
+
+    .line 7
+    .line 8
+    invoke-static {p0}, Lnl2;->b0(Ljava/lang/String;)V
+
+    .line 9
+    .line 10
+    .line 11
+    const/4 p0, 0x0
+
+    .line 12
+    throw p0
+.end method
+
+.method public final getSource$okhttp()Lcom/applovin/shadow/okio/BufferedSource;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->source:Lcom/applovin/shadow/okio/BufferedSource;
+
+    .line 2
+    .line 3
+    if-eqz p0, :cond_0
+
+    .line 4
+    .line 5
+    return-object p0
+
+    .line 6
+    :cond_0
+    const-string p0, "source"
+
+    .line 7
+    .line 8
+    invoke-static {p0}, Lnl2;->b0(Ljava/lang/String;)V
+
+    .line 9
+    .line 10
+    .line 11
+    const/4 p0, 0x0
+
+    .line 12
+    throw p0
+.end method
+
+.method public final getTaskRunner$okhttp()Lcom/applovin/shadow/okhttp3/internal/concurrent/TaskRunner;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->taskRunner:Lcom/applovin/shadow/okhttp3/internal/concurrent/TaskRunner;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public final listener(Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Listener;)Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+    .locals 0
+
+    .line 1
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->listener:Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Listener;
+
+    .line 5
+    .line 6
+    return-object p0
+.end method
+
+.method public final pingIntervalMillis(I)Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+    .locals 0
+
+    .line 1
+    iput p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->pingIntervalMillis:I
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public final pushObserver(Lcom/applovin/shadow/okhttp3/internal/http2/PushObserver;)Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+    .locals 0
+
+    .line 1
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->pushObserver:Lcom/applovin/shadow/okhttp3/internal/http2/PushObserver;
+
+    .line 5
+    .line 6
+    return-object p0
+.end method
+
+.method public final setClient$okhttp(Z)V
+    .locals 0
+
+    .line 1
+    iput-boolean p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->client:Z
+
+    .line 2
+    .line 3
+    return-void
+.end method
+
+.method public final setConnectionName$okhttp(Ljava/lang/String;)V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->connectionName:Ljava/lang/String;
+
+    .line 5
+    .line 6
+    return-void
+.end method
+
+.method public final setListener$okhttp(Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Listener;)V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->listener:Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Listener;
+
+    .line 5
+    .line 6
+    return-void
+.end method
+
+.method public final setPingIntervalMillis$okhttp(I)V
+    .locals 0
+
+    .line 1
+    iput p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->pingIntervalMillis:I
+
+    .line 2
+    .line 3
+    return-void
+.end method
+
+.method public final setPushObserver$okhttp(Lcom/applovin/shadow/okhttp3/internal/http2/PushObserver;)V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->pushObserver:Lcom/applovin/shadow/okhttp3/internal/http2/PushObserver;
+
+    .line 5
+    .line 6
+    return-void
+.end method
+
+.method public final setSink$okhttp(Lcom/applovin/shadow/okio/BufferedSink;)V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->sink:Lcom/applovin/shadow/okio/BufferedSink;
+
+    .line 5
+    .line 6
+    return-void
+.end method
+
+.method public final setSocket$okhttp(Ljava/net/Socket;)V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->socket:Ljava/net/Socket;
+
+    .line 5
+    .line 6
+    return-void
+.end method
+
+.method public final setSource$okhttp(Lcom/applovin/shadow/okio/BufferedSource;)V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->source:Lcom/applovin/shadow/okio/BufferedSource;
+
+    .line 5
+    .line 6
+    return-void
+.end method
+
+.method public final socket(Ljava/net/Socket;)Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+    .locals 7
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 61
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    const/16 v5, 0xe
+
+    const/4 v6, 0x0
+
+    const/4 v2, 0x0
+
+    const/4 v3, 0x0
+
+    const/4 v4, 0x0
+
+    move-object v0, p0
+
+    move-object v1, p1
+
+    invoke-static/range {v0 .. v6}, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->socket$default(Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;Ljava/net/Socket;Ljava/lang/String;Lcom/applovin/shadow/okio/BufferedSource;Lcom/applovin/shadow/okio/BufferedSink;ILjava/lang/Object;)Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public final socket(Ljava/net/Socket;Ljava/lang/String;)Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+    .locals 7
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 59
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    invoke-virtual {p2}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    const/16 v5, 0xc
+
+    const/4 v6, 0x0
+
+    const/4 v3, 0x0
+
+    const/4 v4, 0x0
+
+    move-object v0, p0
+
+    move-object v1, p1
+
+    move-object v2, p2
+
+    invoke-static/range {v0 .. v6}, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->socket$default(Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;Ljava/net/Socket;Ljava/lang/String;Lcom/applovin/shadow/okio/BufferedSource;Lcom/applovin/shadow/okio/BufferedSink;ILjava/lang/Object;)Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public final socket(Ljava/net/Socket;Ljava/lang/String;Lcom/applovin/shadow/okio/BufferedSource;)Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+    .locals 7
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 60
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    invoke-virtual {p2}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    invoke-virtual {p3}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    const/16 v5, 0x8
+
+    const/4 v6, 0x0
+
+    const/4 v4, 0x0
+
+    move-object v0, p0
+
+    move-object v1, p1
+
+    move-object v2, p2
+
+    move-object v3, p3
+
+    invoke-static/range {v0 .. v6}, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->socket$default(Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;Ljava/net/Socket;Ljava/lang/String;Lcom/applovin/shadow/okio/BufferedSource;Lcom/applovin/shadow/okio/BufferedSink;ILjava/lang/Object;)Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public final socket(Ljava/net/Socket;Ljava/lang/String;Lcom/applovin/shadow/okio/BufferedSource;Lcom/applovin/shadow/okio/BufferedSink;)Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 1
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 2
+    .line 3
+    .line 4
+    invoke-virtual {p2}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 5
+    .line 6
+    .line 7
+    invoke-virtual {p3}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 8
+    .line 9
+    .line 10
+    invoke-virtual {p4}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 11
+    .line 12
+    .line 13
+    invoke-virtual {p0, p1}, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->setSocket$okhttp(Ljava/net/Socket;)V
+
+    .line 14
+    .line 15
+    .line 16
+    iget-boolean p1, p0, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->client:Z
+
+    .line 17
+    .line 18
+    if-eqz p1, :cond_0
+
+    .line 19
+    .line 20
+    new-instance p1, Ljava/lang/StringBuilder;
+
+    .line 21
+    .line 22
+    invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
+
+    .line 23
+    .line 24
+    .line 25
+    sget-object v0, Lcom/applovin/shadow/okhttp3/internal/Util;->okHttpName:Ljava/lang/String;
+
+    .line 26
+    .line 27
+    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 28
+    .line 29
+    .line 30
+    const/16 v0, 0x20
+
+    .line 31
+    .line 32
+    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+
+    .line 33
+    .line 34
+    .line 35
+    invoke-virtual {p1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 36
+    .line 37
+    .line 38
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    .line 39
+    .line 40
+    .line 41
+    move-result-object p1
+
+    .line 42
+    goto :goto_0
+
+    .line 43
+    :cond_0
+    const-string p1, "MockWebServer "
+
+    .line 44
+    .line 45
+    invoke-virtual {p1, p2}, Ljava/lang/String;->concat(Ljava/lang/String;)Ljava/lang/String;
+
+    .line 46
+    .line 47
+    .line 48
+    move-result-object p1
+
+    .line 49
+    :goto_0
+    invoke-virtual {p0, p1}, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->setConnectionName$okhttp(Ljava/lang/String;)V
+
+    .line 50
+    .line 51
+    .line 52
+    invoke-virtual {p0, p3}, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->setSource$okhttp(Lcom/applovin/shadow/okio/BufferedSource;)V
+
+    .line 53
+    .line 54
+    .line 55
+    invoke-virtual {p0, p4}, Lcom/applovin/shadow/okhttp3/internal/http2/Http2Connection$Builder;->setSink$okhttp(Lcom/applovin/shadow/okio/BufferedSink;)V
+
+    .line 56
+    .line 57
+    .line 58
+    return-object p0
+.end method

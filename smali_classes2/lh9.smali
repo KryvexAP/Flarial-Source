@@ -1,0 +1,7 @@
+.class public abstract Llh9;
+.super Lmg9;
+.source "r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68"
+
+# interfaces
+.implements Ljava/util/RandomAccess;
+.implements Lsi9;

@@ -1,0 +1,28 @@
+.class public interface abstract Lcom/unity3d/ads/core/data/datasource/ByteStringDataSource;
+.super Ljava/lang/Object;
+.source "r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68"
+
+
+# virtual methods
+.method public abstract get(Lqr0;)Ljava/lang/Object;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lqr0;",
+            ")",
+            "Ljava/lang/Object;"
+        }
+    .end annotation
+.end method
+
+.method public abstract set(Lcom/google/protobuf/ByteString;Lqr0;)Ljava/lang/Object;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/google/protobuf/ByteString;",
+            "Lqr0;",
+            ")",
+            "Ljava/lang/Object;"
+        }
+    .end annotation
+.end method

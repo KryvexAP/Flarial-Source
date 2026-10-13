@@ -1,0 +1,62 @@
+.class public Lorg/spongycastle/tsp/TSPIOException;
+.super Ljava/io/IOException;
+.source "r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68"
+
+
+# instance fields
+.field underlyingException:Ljava/lang/Throwable;
+
+
+# direct methods
+.method public constructor <init>(Ljava/lang/String;)V
+    .locals 0
+
+    .line 7
+    invoke-direct {p0, p1}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    return-void
+.end method
+
+.method public constructor <init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0, p1}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p2, p0, Lorg/spongycastle/tsp/TSPIOException;->underlyingException:Ljava/lang/Throwable;
+
+    .line 5
+    .line 6
+    return-void
+.end method
+
+
+# virtual methods
+.method public final getCause()Ljava/lang/Throwable;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lorg/spongycastle/tsp/TSPIOException;->underlyingException:Ljava/lang/Throwable;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public final getUnderlyingException()Ljava/lang/Exception;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lorg/spongycastle/tsp/TSPIOException;->underlyingException:Ljava/lang/Throwable;
+
+    .line 2
+    .line 3
+    check-cast p0, Ljava/lang/Exception;
+
+    .line 4
+    .line 5
+    return-object p0
+.end method

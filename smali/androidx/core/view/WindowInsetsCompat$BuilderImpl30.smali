@@ -1,0 +1,127 @@
+.class Landroidx/core/view/WindowInsetsCompat$BuilderImpl30;
+.super Landroidx/core/view/WindowInsetsCompat$BuilderImpl29;
+.source "r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Landroidx/core/view/WindowInsetsCompat;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x9
+    name = "BuilderImpl30"
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0}, Landroidx/core/view/WindowInsetsCompat$BuilderImpl29;-><init>()V
+
+    .line 2
+    .line 3
+    .line 4
+    return-void
+.end method
+
+.method public constructor <init>(Landroidx/core/view/WindowInsetsCompat;)V
+    .locals 0
+
+    .line 5
+    invoke-direct {p0, p1}, Landroidx/core/view/WindowInsetsCompat$BuilderImpl29;-><init>(Landroidx/core/view/WindowInsetsCompat;)V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public setInsets(ILandroidx/core/graphics/Insets;)V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/core/view/WindowInsetsCompat$BuilderImpl29;->mPlatBuilder:Landroid/view/WindowInsets$Builder;
+
+    .line 2
+    .line 3
+    invoke-static {p1}, Landroidx/core/view/WindowInsetsCompat$TypeImpl30;->toPlatformType(I)I
+
+    .line 4
+    .line 5
+    .line 6
+    move-result p1
+
+    .line 7
+    invoke-virtual {p2}, Landroidx/core/graphics/Insets;->toPlatformInsets()Landroid/graphics/Insets;
+
+    .line 8
+    .line 9
+    .line 10
+    move-result-object p2
+
+    .line 11
+    invoke-static {p0, p1, p2}, Lsc3;->t(Landroid/view/WindowInsets$Builder;ILandroid/graphics/Insets;)V
+
+    .line 12
+    .line 13
+    .line 14
+    return-void
+.end method
+
+.method public setInsetsIgnoringVisibility(ILandroidx/core/graphics/Insets;)V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/core/view/WindowInsetsCompat$BuilderImpl29;->mPlatBuilder:Landroid/view/WindowInsets$Builder;
+
+    .line 2
+    .line 3
+    invoke-static {p1}, Landroidx/core/view/WindowInsetsCompat$TypeImpl30;->toPlatformType(I)I
+
+    .line 4
+    .line 5
+    .line 6
+    move-result p1
+
+    .line 7
+    invoke-virtual {p2}, Landroidx/core/graphics/Insets;->toPlatformInsets()Landroid/graphics/Insets;
+
+    .line 8
+    .line 9
+    .line 10
+    move-result-object p2
+
+    .line 11
+    invoke-static {p0, p1, p2}, Lsc3;->B(Landroid/view/WindowInsets$Builder;ILandroid/graphics/Insets;)V
+
+    .line 12
+    .line 13
+    .line 14
+    return-void
+.end method
+
+.method public setVisible(IZ)V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/core/view/WindowInsetsCompat$BuilderImpl29;->mPlatBuilder:Landroid/view/WindowInsets$Builder;
+
+    .line 2
+    .line 3
+    invoke-static {p1}, Landroidx/core/view/WindowInsetsCompat$TypeImpl30;->toPlatformType(I)I
+
+    .line 4
+    .line 5
+    .line 6
+    move-result p1
+
+    .line 7
+    invoke-static {p0, p1, p2}, Lsc3;->u(Landroid/view/WindowInsets$Builder;IZ)V
+
+    .line 8
+    .line 9
+    .line 10
+    return-void
+.end method

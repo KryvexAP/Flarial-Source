@@ -1,0 +1,93 @@
+.class final Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAd$1;
+.super Ljava/lang/Object;
+.source "r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68"
+
+# interfaces
+.implements Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAdLoadListener;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAd;->loadAd(Ljava/lang/String;Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedRequest;Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAdLoadCallback;)V
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x9
+    name = null
+.end annotation
+
+
+# instance fields
+.field final synthetic qam:Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAdLoadCallback;
+
+
+# direct methods
+.method public constructor <init>(Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAdLoadCallback;)V
+    .locals 0
+
+    .line 1
+    iput-object p1, p0, Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAd$1;->qam:Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAdLoadCallback;
+
+    .line 2
+    .line 3
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 4
+    .line 5
+    .line 6
+    return-void
+.end method
+
+
+# virtual methods
+.method public onAdLoaded(Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAd;)V
+    .locals 0
+
+    .line 7
+    iget-object p0, p0, Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAd$1;->qam:Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAdLoadCallback;
+
+    invoke-interface {p0, p1}, Lcom/bytedance/sdk/openadsdk/api/PAGLoadCallback;->onAdLoaded(Ljava/lang/Object;)V
+
+    return-void
+.end method
+
+.method public bridge synthetic onAdLoaded(Ljava/lang/Object;)V
+    .locals 0
+
+    .line 1
+    check-cast p1, Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAd;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0, p1}, Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAd$1;->onAdLoaded(Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAd;)V
+
+    .line 4
+    .line 5
+    .line 6
+    return-void
+.end method
+
+.method public onError(ILjava/lang/String;)V
+    .locals 1
+
+    .line 1
+    iget-object p0, p0, Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAd$1;->qam:Lcom/bytedance/sdk/openadsdk/api/reward/PAGRewardedAdLoadCallback;
+
+    .line 2
+    .line 3
+    new-instance v0, Lcom/bytedance/sdk/openadsdk/api/model/PAGErrorModel;
+
+    .line 4
+    .line 5
+    invoke-direct {v0, p1, p2}, Lcom/bytedance/sdk/openadsdk/api/model/PAGErrorModel;-><init>(ILjava/lang/String;)V
+
+    .line 6
+    .line 7
+    .line 8
+    invoke-interface {p0, v0}, Lcom/bytedance/sdk/openadsdk/api/PAGLoadCallback;->onError(Lcom/bytedance/sdk/openadsdk/api/model/PAGErrorModel;)V
+
+    .line 9
+    .line 10
+    .line 11
+    return-void
+.end method

@@ -1,0 +1,73 @@
+.class public final Laz0;
+.super Lsr0;
+.source "r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68"
+
+
+# instance fields
+.field public a:Lkz0;
+
+.field public b:Lvl3;
+
+.field public synthetic c:Ljava/lang/Object;
+
+.field public final synthetic d:Lkz0;
+
+.field public e:I
+
+
+# direct methods
+.method public constructor <init>(Lkz0;Lsr0;)V
+    .locals 0
+
+    .line 1
+    iput-object p1, p0, Laz0;->d:Lkz0;
+
+    .line 2
+    .line 3
+    invoke-direct {p0, p2}, Lsr0;-><init>(Lqr0;)V
+
+    .line 4
+    .line 5
+    .line 6
+    return-void
+.end method
+
+
+# virtual methods
+.method public final invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 1
+
+    .line 1
+    iput-object p1, p0, Laz0;->c:Ljava/lang/Object;
+
+    .line 2
+    .line 3
+    iget p1, p0, Laz0;->e:I
+
+    .line 4
+    .line 5
+    const/high16 v0, -0x80000000
+
+    .line 6
+    .line 7
+    or-int/2addr p1, v0
+
+    .line 8
+    iput p1, p0, Laz0;->e:I
+
+    .line 9
+    .line 10
+    iget-object p1, p0, Laz0;->d:Lkz0;
+
+    .line 11
+    .line 12
+    invoke-virtual {p1, p0}, Lkz0;->e(Lsr0;)Ljava/lang/Object;
+
+    .line 13
+    .line 14
+    .line 15
+    move-result-object p0
+
+    .line 16
+    return-object p0
+.end method

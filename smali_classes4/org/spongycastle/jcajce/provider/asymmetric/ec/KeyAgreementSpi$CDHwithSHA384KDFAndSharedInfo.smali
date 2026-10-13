@@ -1,0 +1,62 @@
+.class public Lorg/spongycastle/jcajce/provider/asymmetric/ec/KeyAgreementSpi$CDHwithSHA384KDFAndSharedInfo;
+.super Lorg/spongycastle/jcajce/provider/asymmetric/ec/KeyAgreementSpi;
+.source "r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lorg/spongycastle/jcajce/provider/asymmetric/ec/KeyAgreementSpi;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x9
+    name = "CDHwithSHA384KDFAndSharedInfo"
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .locals 4
+
+    .line 1
+    new-instance v0, Lorg/spongycastle/crypto/agreement/ECDHCBasicAgreement;
+
+    .line 2
+    .line 3
+    invoke-direct {v0}, Ljava/lang/Object;-><init>()V
+
+    .line 4
+    .line 5
+    .line 6
+    new-instance v1, Lorg/spongycastle/crypto/generators/KDF2BytesGenerator;
+
+    .line 7
+    .line 8
+    new-instance v2, Lorg/spongycastle/crypto/digests/SHA384Digest;
+
+    .line 9
+    .line 10
+    invoke-direct {v2}, Lorg/spongycastle/crypto/digests/LongDigest;-><init>()V
+
+    .line 11
+    .line 12
+    .line 13
+    const/4 v3, 0x1
+
+    .line 14
+    invoke-direct {v1, v3, v2}, Lorg/spongycastle/crypto/generators/BaseKDFBytesGenerator;-><init>(ILorg/spongycastle/crypto/Digest;)V
+
+    .line 15
+    .line 16
+    .line 17
+    const-string v2, "ECCDHwithSHA384KDF"
+
+    .line 18
+    .line 19
+    invoke-direct {p0, v2, v0, v1}, Lorg/spongycastle/jcajce/provider/asymmetric/ec/KeyAgreementSpi;-><init>(Ljava/lang/String;Lorg/spongycastle/crypto/BasicAgreement;Lorg/spongycastle/crypto/DerivationFunction;)V
+
+    .line 20
+    .line 21
+    .line 22
+    return-void
+.end method

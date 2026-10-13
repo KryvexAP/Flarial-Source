@@ -1,0 +1,59 @@
+.class public Lorg/spongycastle/jcajce/provider/symmetric/GOST28147$GCFB;
+.super Lorg/spongycastle/jcajce/provider/symmetric/util/BaseBlockCipher;
+.source "r8-map-id-b6feed86e7dcac09e2da34bbfe31f6fe7986d284a08bc59efba35eef8c385a68"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lorg/spongycastle/jcajce/provider/symmetric/GOST28147;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x9
+    name = "GCFB"
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .locals 3
+
+    .line 1
+    new-instance v0, Lorg/spongycastle/crypto/BufferedBlockCipher;
+
+    .line 2
+    .line 3
+    new-instance v1, Lorg/spongycastle/crypto/modes/GCFBBlockCipher;
+
+    .line 4
+    .line 5
+    new-instance v2, Lorg/spongycastle/crypto/engines/GOST28147Engine;
+
+    .line 6
+    .line 7
+    invoke-direct {v2}, Lorg/spongycastle/crypto/engines/GOST28147Engine;-><init>()V
+
+    .line 8
+    .line 9
+    .line 10
+    invoke-direct {v1, v2}, Lorg/spongycastle/crypto/modes/GCFBBlockCipher;-><init>(Lorg/spongycastle/crypto/BlockCipher;)V
+
+    .line 11
+    .line 12
+    .line 13
+    invoke-direct {v0, v1}, Lorg/spongycastle/crypto/BufferedBlockCipher;-><init>(Lorg/spongycastle/crypto/BlockCipher;)V
+
+    .line 14
+    .line 15
+    .line 16
+    const/16 v1, 0x40
+
+    .line 17
+    .line 18
+    invoke-direct {p0, v0, v1}, Lorg/spongycastle/jcajce/provider/symmetric/util/BaseBlockCipher;-><init>(Lorg/spongycastle/crypto/BufferedBlockCipher;I)V
+
+    .line 19
+    .line 20
+    .line 21
+    return-void
+.end method

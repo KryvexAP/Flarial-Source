@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <exclude domain="sharedpref" path="flarial_discord_oauth.xml" />
+    <exclude domain="sharedpref" path="flarial_account_oauth.xml" />
+    <exclude domain="sharedpref" path="flarial_data_migration.xml" />
+    <exclude domain="sharedpref" path="com.flarial.xal.crypto.xml" />
+    <exclude domain="sharedpref" path="com.microsoft.xal.crypto.xml" />
+    <exclude domain="file" path="xal/" />
+</full-backup-content>

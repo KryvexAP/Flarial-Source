@@ -1,0 +1,22 @@
+{
+  "apk_sha256": "6c3fd77c48b148a5b8ee8b8c904fcb30cc968a5dd4ba8316fe831720421e9b2c",
+  "apk_size": 47144332,
+  "package": "xyz.flarial.client",
+  "versionName": "1.4.20",
+  "versionCode": 2026101202,
+  "app_name": "Flarial",
+  "rea": {
+    "inspect_artifact": "ev_191b0543aaa572139f1fae9f9298e0d519e17e34d5b9a480159f5233ccc82c53",
+    "extract_artifact": "ev_c13403154a0abbeb9ca35bf4ea7039fcfad8efe2572af1e859b3aa18559de9f4",
+    "android_blocked": "capability_unavailable jadx android/arm64 unsupported"
+  },
+  "tools": {
+    "apktool": "2.11.1",
+    "jadx": "1.5.6",
+    "java": "17.0.20"
+  },
+  "counts": {
+    "smali": 20897
+  },
+  "notes": "R8 obfuscated; original Gradle source not recoverable; lib/*.so excluded"
+}

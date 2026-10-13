@@ -1,0 +1,8 @@
+# binários nativos e originais excluídos do source (ver provenance)
+lib/
+original/
+*.apk
+*.dex
+*.so
+jadx-out-tmp/
+.tools/

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut android:icon="@mipmap/flarial_icon" android:enabled="true" android:shortcutId="minecraft_data_manager" android:shortcutShortLabel="@string/shortcut_minecraft_data_manager_short" android:shortcutLongLabel="@string/shortcut_minecraft_data_manager">
+        <intent android:targetPackage="xyz.flarial.client" android:action="android.intent.action.VIEW" android:targetClass="com.flarial.client.MCDataManagerActivity" />
+    </shortcut>
+</shortcuts>

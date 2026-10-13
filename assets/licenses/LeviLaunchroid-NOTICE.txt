@@ -1,0 +1,6 @@
+This account-switcher implementation is derived in part from LeviLaunchroid:
+https://github.com/LiteLDev/LeviLaunchroid
+
+The imported Microsoft/Xbox authentication model and XAL storage format were
+adapted for Flarial. Flarial's integration, UI, process handling, validation,
+and security hardening differ from the upstream implementation.
